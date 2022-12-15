@@ -1,0 +1,42 @@
+
+
+rsync -ruptl /opt/rsat-tools/rsat_teaching/perl-scripts/lib/js /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS
+
+
+rsync -ruptl /opt/rsat-tools/rsat_teaching/public_html/images/program_icons/matrix-clustering_icons /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/convert-matrix -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_query_matrices.transfac -from transfac -to tf -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/jaspar_2022_nematodes_input_motifs_processed_1.tf
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/convert-matrix -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/jaspar_2022_nematodes_input_motifs_processed_1.tf -from tf -to transfac -prefix_id jaspar_2022_nematodes -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/jaspar_2022_nematodes_input_motifs_processed.tf
+
+
+cat /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/jaspar_2022_nematodes_input_motifs_processed.tf  > /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/input_motifs_processed.tf
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/convert-matrix -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/input_motifs_processed.tf -split -from tf -to tf -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/motif
+
+
+ cat /opt/rsat-tools/rsat_teaching/R-scripts/matrix-clustering.R | /usr/bin/R --slave --no-save --no-restore --no-environ --args " infile = '/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/pairwise_compa.tab'; hclust.method = 'average'; description.file = '/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/pairwise_compa_matrix_descriptions.tab'; distance.table = '/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/distance_table.tab'; alignment.file = '/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/alignment_table.tab'; verbosity = 0; metric = 'Ncor'; heatmap.color.palette = 'YlOrRd'; heatmap.color.classes = '9'; export.newick = 0; radial.only = 1; draw.heatmap = 0; draw.consensus = 0; pos.hclust.in.heatmap = 'column'; lthsp = 'Ncor_0.4_cor_0.6_'; out.prefix = '/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering'; "
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/convert-matrix -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/input_motifs_processed.tf -from tf -to tf -matrix_id_file /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/cluster_1_motif_IDs.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_data/cluster_1_transfac_motifs.tf
+
+
+rm -r /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_pairwise_compa_logos
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/text-to-html -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/pairwise_compa_matrix_descriptions.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_html/pairwise_compa_matrix_descriptions.html
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/text-to-html -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/distance_table.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/distance_table.html
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/text-to-html -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/alignment_table.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/alignment_table.html
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/text-to-html -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/clusters.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/clusters.html
+
+
+/opt/rsat-tools/rsat_teaching/perl-scripts/text-to-html -i /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/clusters_motif_names.tab -o /opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/clusters_motif_names.html

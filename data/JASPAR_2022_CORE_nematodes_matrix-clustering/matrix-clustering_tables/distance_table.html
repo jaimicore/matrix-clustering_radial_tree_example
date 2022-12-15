@@ -1,0 +1,2938 @@
+<html>
+<header>
+<title>/opt/rsat-tools/rsat_teaching/public_html/tmp/www-data/2022/12/15/matrix-clustering_2022-12-15.141331_YLSxpS/matrix-clustering_tables/distance_table.tab</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+
+<script type="text/javascript">
+ <!-- 
+var stIsIE = /*@cc_on!@*/false;
+
+sorttable = {
+  init: function() {
+    // quit if this function has already been called
+    if (arguments.callee.done) return;
+    // flag this function so we don't do the same thing twice
+    arguments.callee.done = true;
+    // kill the timer
+    if (_timer) clearInterval(_timer);
+    
+    if (!document.createElement || !document.getElementsByTagName) return;
+    
+    sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
+    
+    forEach(document.getElementsByTagName('table'), function(table) {
+      if (table.className.search(/\bsortable\b/) != -1) {
+        sorttable.makeSortable(table);
+      }
+    });
+    
+  },
+  
+  makeSortable: function(table) {
+    if (table.getElementsByTagName('thead').length == 0) {
+      // table doesn't have a tHead. Since it should have, create one and
+      // put the first table row in it.
+      the = document.createElement('thead');
+      the.appendChild(table.rows[0]);
+      table.insertBefore(the,table.firstChild);
+    }
+    // Safari doesn't support table.tHead, sigh
+    if (table.tHead == null) table.tHead = table.getElementsByTagName('thead')[0];
+    
+    if (table.tHead.rows.length != 1) return; // can't cope with two header rows
+    
+    // Sorttable v1 put rows with a class of "sortbottom" at the bottom (as
+    // "total" rows, for example). This is B&R, since what you're supposed
+    // to do is put them in a tfoot. So, if there are sortbottom rows,
+    // for backwards compatibility, move them to tfoot (creating it if needed).
+    sortbottomrows = [];
+    for (var i=0; i<table.rows.length; i++) {
+      if (table.rows[i].className.search(/\bsortbottom\b/) != -1) {
+        sortbottomrows[sortbottomrows.length] = table.rows[i];
+      }
+    }
+    if (sortbottomrows) {
+      if (table.tFoot == null) {
+        // table doesn't have a tfoot. Create one.
+        tfo = document.createElement('tfoot');
+        table.appendChild(tfo);
+      }
+      for (var i=0; i<sortbottomrows.length; i++) {
+        tfo.appendChild(sortbottomrows[i]);
+      }
+      delete sortbottomrows;
+    }
+    
+    // work through each column and calculate its type
+    headrow = table.tHead.rows[0].cells;
+    for (var i=0; i<headrow.length; i++) {
+      // manually override the type with a sorttable_type attribute
+      if (!headrow[i].className.match(/\bsorttable_nosort\b/)) { // skip this col
+        mtch = headrow[i].className.match(/\bsorttable_([a-z0-9]+)\b/);
+        if (mtch) { override = mtch[1]; }
+	      if (mtch && typeof sorttable["sort_"+override] == 'function') {
+	        headrow[i].sorttable_sortfunction = sorttable["sort_"+override];
+	      } else {
+	        headrow[i].sorttable_sortfunction = sorttable.guessType(table,i);
+	      }
+	      // make it clickable to sort
+	      headrow[i].sorttable_columnindex = i;
+	      headrow[i].sorttable_tbody = table.tBodies[0];
+	      dean_addEvent(headrow[i],"click", function(e) {
+
+          if (this.className.search(/\bsorttable_sorted\b/) != -1) {
+            // if we're already sorted by this column, just 
+            // reverse the table, which is quicker
+            sorttable.reverse(this.sorttable_tbody);
+            this.className = this.className.replace('sorttable_sorted',
+                                                    'sorttable_sorted_reverse');
+            this.removeChild(document.getElementById('sorttable_sortfwdind'));
+            sortrevind = document.createElement('span');
+            sortrevind.id = "sorttable_sortrevind";
+            sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
+            this.appendChild(sortrevind);
+            return;
+          }
+          if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
+            // if we're already sorted by this column in reverse, just 
+            // re-reverse the table, which is quicker
+            sorttable.reverse(this.sorttable_tbody);
+            this.className = this.className.replace('sorttable_sorted_reverse',
+                                                    'sorttable_sorted');
+            this.removeChild(document.getElementById('sorttable_sortrevind'));
+            sortfwdind = document.createElement('span');
+            sortfwdind.id = "sorttable_sortfwdind";
+            sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+            this.appendChild(sortfwdind);
+            return;
+          }
+          
+          // remove sorttable_sorted classes
+          theadrow = this.parentNode;
+          forEach(theadrow.childNodes, function(cell) {
+            if (cell.nodeType == 1) { // an element
+              cell.className = cell.className.replace('sorttable_sorted_reverse','');
+              cell.className = cell.className.replace('sorttable_sorted','');
+            }
+          });
+          sortfwdind = document.getElementById('sorttable_sortfwdind');
+          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
+          sortrevind = document.getElementById('sorttable_sortrevind');
+          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+          
+          this.className += ' sorttable_sorted';
+          sortfwdind = document.createElement('span');
+          sortfwdind.id = "sorttable_sortfwdind";
+          sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+          this.appendChild(sortfwdind);
+
+	        // build an array to sort. This is a Schwartzian transform thing,
+	        // i.e., we "decorate" each row with the actual sort key,
+	        // sort based on the sort keys, and then put the rows back in order
+	        // which is a lot faster because you only do getInnerText once per row
+	        row_array = [];
+	        col = this.sorttable_columnindex;
+	        rows = this.sorttable_tbody.rows;
+	        for (var j=0; j<rows.length; j++) {
+	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+	        }
+	        /* If you want a stable sort, uncomment the following line */
+	        //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
+	        /* and comment out this one */
+	        row_array.sort(this.sorttable_sortfunction);
+	        
+	        tb = this.sorttable_tbody;
+	        for (var j=0; j<row_array.length; j++) {
+	          tb.appendChild(row_array[j][1]);
+	        }
+	        
+	        delete row_array;
+	      });
+	    }
+    }
+  },
+  
+  guessType: function(table, column) {
+    // guess the type of a column based on its first non-blank row
+    sortfn = sorttable.sort_alpha;
+    for (var i=0; i<table.tBodies[0].rows.length; i++) {
+      text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
+      if (text != '') {
+        if (text.match(/^-?[£$¤]?[\d,.]+%?$/)||text.match(/^\d+((\.|,)\d+)?(E|e)(\+|\-)\d+/)) {
+          return sorttable.sort_numeric;
+        }
+        // check for a date: dd/mm/yyyy or dd/mm/yy 
+        // can have / or . or - as separator
+        // can be mm/dd as well
+        possdate = text.match(sorttable.DATE_RE)
+        if (possdate) {
+          // looks like a date
+          first = parseInt(possdate[1]);
+          second = parseInt(possdate[2]);
+          if (first > 12) {
+            // definitely dd/mm
+            return sorttable.sort_ddmm;
+          } else if (second > 12) {
+            return sorttable.sort_mmdd;
+          } else {
+            // looks like a date, but we can't tell which, so assume
+            // that it's dd/mm (English imperialism!) and keep looking
+            sortfn = sorttable.sort_ddmm;
+          }
+        }
+      }
+    }
+    return sortfn;
+  },
+  
+  getInnerText: function(node) {
+    // gets the text we want to use for sorting for a cell.
+    // strips leading and trailing whitespace.
+    // this is *not* a generic getInnerText function; it's special to sorttable.
+    // for example, you can override the cell text with a customkey attribute.
+    // it also gets .value for <input> fields.
+    
+    hasInputs = (typeof node.getElementsByTagName == 'function') &&
+                 node.getElementsByTagName('input').length;
+    
+    if (node.getAttribute("sorttable_customkey") != null) {
+      return node.getAttribute("sorttable_customkey");
+    }
+    else if (typeof node.textContent != 'undefined' && !hasInputs) {
+      return node.textContent.replace(/^\s+|\s+$/g, '');
+    }
+    else if (typeof node.innerText != 'undefined' && !hasInputs) {
+      return node.innerText.replace(/^\s+|\s+$/g, '');
+    }
+    else if (typeof node.text != 'undefined' && !hasInputs) {
+      return node.text.replace(/^\s+|\s+$/g, '');
+    }
+    else {
+      switch (node.nodeType) {
+        case 3:
+          if (node.nodeName.toLowerCase() == 'input') {
+            return node.value.replace(/^\s+|\s+$/g, '');
+          }
+        case 4:
+          return node.nodeValue.replace(/^\s+|\s+$/g, '');
+          break;
+        case 1:
+        case 11:
+          var innerText = '';
+          for (var i = 0; i < node.childNodes.length; i++) {
+            innerText += sorttable.getInnerText(node.childNodes[i]);
+          }
+          return innerText.replace(/^\s+|\s+$/g, '');
+          break;
+        default:
+          return '';
+      }
+    }
+  },
+  
+  reverse: function(tbody) {
+    // reverse the rows in a tbody
+    newrows = [];
+    for (var i=0; i<tbody.rows.length; i++) {
+      newrows[newrows.length] = tbody.rows[i];
+    }
+    for (var i=newrows.length-1; i>=0; i--) {
+       tbody.appendChild(newrows[i]);
+    }
+    delete newrows;
+  },
+  
+  /* sort functions
+     each sort function takes two parameters, a and b
+     you are comparing a[0] and b[0] */
+  /* Numeric order */
+  sort_numeric: function(a,b) {
+	aa = parseFloat(a[0].replace(/[^0-9.\-eE]/g,''));
+	if (isNaN(aa)) aa = 0;
+	bb = parseFloat(b[0].replace(/[^0-9.\-eE]/g,''));
+	if (isNaN(bb)) bb = 0;
+	return aa-bb;
+    },
+//   sort_numeric: function(a,b) {
+//     aa = parseFloat(a[0].replace(/[^0-9.-eE]/g,''));
+//     if (isNaN(aa)) aa = 0;
+//     bb = parseFloat(b[0].replace(/[^0-9.-eE]/g,'')); 
+//     if (isNaN(bb)) bb = 0;    
+//     return aa-bb;
+//   },
+
+  /* alphabetical order */
+  sort_alpha: function(a,b) {
+    if (a[0]==b[0]) return 0;
+    if (a[0]<b[0]) return -1;
+    return 1;
+  },
+
+  /* sort dates formatted as ddmm (day first, month after) */
+  sort_ddmm: function(a,b) {
+    mtch = a[0].match(sorttable.DATE_RE);
+    y = mtch[3]; m = mtch[2]; d = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt1 = y+m+d;
+    mtch = b[0].match(sorttable.DATE_RE);
+    y = mtch[3]; m = mtch[2]; d = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt2 = y+m+d;
+    if (dt1==dt2) return 0;
+    if (dt1<dt2) return -1;
+    return 1;
+  },
+
+  /* sort dates formatted as mmdd (month first, day after) */
+  sort_mmdd: function(a,b) {
+    mtch = a[0].match(sorttable.DATE_RE);
+    y = mtch[3]; d = mtch[2]; m = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt1 = y+m+d;
+    mtch = b[0].match(sorttable.DATE_RE);
+    y = mtch[3]; d = mtch[2]; m = mtch[1];
+    if (m.length == 1) m = '0'+m;
+    if (d.length == 1) d = '0'+d;
+    dt2 = y+m+d;
+    if (dt1==dt2) return 0;
+    if (dt1<dt2) return -1;
+    return 1;
+  },
+  
+  shaker_sort: function(list, comp_func) {
+    // A stable sort function to allow multi-level sorting of data
+    // see: http://en.wikipedia.org/wiki/Cocktail_sort
+    // thanks to Joseph Nahmias
+    var b = 0;
+    var t = list.length - 1;
+    var swap = true;
+
+    while(swap) {
+        swap = false;
+        for(var i = b; i < t; ++i) {
+            if ( comp_func(list[i], list[i+1]) > 0 ) {
+                var q = list[i]; list[i] = list[i+1]; list[i+1] = q;
+                swap = true;
+            }
+        } // for
+        t--;
+
+        if (!swap) break;
+
+        for(var i = t; i > b; --i) {
+            if ( comp_func(list[i], list[i-1]) < 0 ) {
+                var q = list[i]; list[i] = list[i-1]; list[i-1] = q;
+                swap = true;
+            }
+        } // for
+        b++;
+
+    } // while(swap)
+  }  
+}
+
+/* ******************************************************************
+   Supporting functions: bundled here to avoid depending on a library
+   ****************************************************************** */
+
+// Dean Edwards/Matthias Miller/John Resig
+
+/* for Mozilla/Opera9 */
+if (document.addEventListener) {
+    document.addEventListener("DOMContentLoaded", sorttable.init, false);
+}
+
+/* for Internet Explorer */
+/*@cc_on @*/
+/*@if (@_win32)
+    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+    var script = document.getElementById("__ie_onload");
+    script.onreadystatechange = function() {
+        if (this.readyState == "complete") {
+            sorttable.init(); // call the onload handler
+        }
+    };
+/*@end @*/
+
+/* for Safari */
+if (/WebKit/i.test(navigator.userAgent)) { // sniff
+    var _timer = setInterval(function() {
+        if (/loaded|complete/.test(document.readyState)) {
+            sorttable.init(); // call the onload handler
+        }
+    }, 10);
+}
+
+/* for other browsers */
+window.onload = sorttable.init;
+
+// written by Dean Edwards, 2005
+// with input from Tino Zijdel, Matthias Miller, Diego Perini
+
+// http://dean.edwards.name/weblog/2005/10/add-event/
+
+function dean_addEvent(element, type, handler) {
+	if (element.addEventListener) {
+		element.addEventListener(type, handler, false);
+	} else {
+		// assign each event handler a unique ID
+		if (!handler.$$guid) handler.$$guid = dean_addEvent.guid++;
+		// create a hash table of event types for the element
+		if (!element.events) element.events = {};
+		// create a hash table of event handlers for each element/event pair
+		var handlers = element.events[type];
+		if (!handlers) {
+			handlers = element.events[type] = {};
+			// store the existing event handler (if there is one)
+			if (element["on" + type]) {
+				handlers[0] = element["on" + type];
+			}
+		}
+		// store the event handler in the hash table
+		handlers[handler.$$guid] = handler;
+		// assign a global event handler to do all the work
+		element["on" + type] = handleEvent;
+	}
+};
+// a counter used to create unique IDs
+dean_addEvent.guid = 1;
+
+function removeEvent(element, type, handler) {
+	if (element.removeEventListener) {
+		element.removeEventListener(type, handler, false);
+	} else {
+		// delete the event handler from the hash table
+		if (element.events && element.events[type]) {
+			delete element.events[type][handler.$$guid];
+		}
+	}
+};
+
+function handleEvent(event) {
+	var returnValue = true;
+	// grab the event object (IE uses a global event object)
+	event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
+	// get a reference to the hash table of event handlers
+	var handlers = this.events[event.type];
+	// execute each event handler
+	for (var i in handlers) {
+		this.$$handleEvent = handlers[i];
+		if (this.$$handleEvent(event) === false) {
+			returnValue = false;
+		}
+	}
+	return returnValue;
+};
+
+function fixEvent(event) {
+	// add W3C standard event methods
+	event.preventDefault = fixEvent.preventDefault;
+	event.stopPropagation = fixEvent.stopPropagation;
+	return event;
+};
+fixEvent.preventDefault = function() {
+	this.returnValue = false;
+};
+fixEvent.stopPropagation = function() {
+  this.cancelBubble = true;
+}
+
+// Dean's forEach: http://dean.edwards.name/base/forEach.js
+/*
+	forEach, version 1.0
+	Copyright 2006, Dean Edwards
+	License: http://www.opensource.org/licenses/mit-license.php
+*/
+
+// array-like enumeration
+if (!Array.forEach) { // mozilla already supports this
+	Array.forEach = function(array, block, context) {
+		for (var i = 0; i < array.length; i++) {
+			block.call(context, array[i], i, array);
+		}
+	};
+}
+
+// generic enumeration
+Function.prototype.forEach = function(object, block, context) {
+	for (var key in object) {
+		if (typeof this.prototype[key] == "undefined") {
+			block.call(context, object[key], key, object);
+		}
+	}
+};
+
+// character enumeration
+String.forEach = function(string, block, context) {
+	Array.forEach(string.split(""), function(chr, index) {
+		block.call(context, chr, index, string);
+	});
+};
+
+// globally resolve forEach enumeration
+var forEach = function(object, block, context) {
+	if (object) {
+		var resolve = Object; // default
+		if (object instanceof Function) {
+			// functions have a "length" property
+			resolve = Function;
+		} else if (object.forEach instanceof Function) {
+			// the object implements a custom forEach method so use that
+			object.forEach(block, context);
+			return;
+		} else if (typeof object == "string") {
+			// the object is a string
+			resolve = String;
+		} else if (typeof object.length == "number") {
+			// the object is array-like
+			resolve = Array;
+		}
+		resolve.forEach(object, block, context);
+	}
+}
+
+// --> 
+</script>
+<style type='text/css'>
+/* Style sheet for the HTML formatting of RSAT results */
+
+/* BODY  */
+body {
+       font-family: Verdana, Helvetica, Arial, sans-serif;
+       font-size: 70%;
+       margin-top: 2px;
+       margin-left: 20px;
+       text-align: justify;
+       background: #ffffff;
+       margin-right: 20px;
+/*       background: #0D73A7 url(images/bullet2-normal.gif) no-repeat 7px 7px;*/
+}
+
+
+/* div for menu */
+
+#Menu_space {
+	margin-top:120px;
+	margin-bottom:300px;
+}
+#Menu_wait {
+	position:absolute;
+	top:120px;
+	left:50%;
+	width:400px;
+	margin-left: -200px;
+	padding:10px;
+	text-align:center;
+	}
+
+#Menu {
+	position:absolute;
+	top:120px;
+	left:50%;
+	width:800px;
+	margin-left: -400px;
+	padding:10px;
+	background-color:#eee;
+	border:1px dashed #999;
+	line-height:17px;
+	font-size: 110%;
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	text-align:left;
+	}
+
+#Menu h3 {
+	margin:0;
+	text-align:center;
+	padding-bottom:5px;
+}
+
+#Menu ul {
+	list-style-type:none;
+}
+
+/* TABLE */
+#Menu table {
+	margin: 10px 10px 10px;
+}
+
+#Menu  td, th {
+	font-size: 70%;
+	padding: 2px 10px;
+	vertical-align:top;
+}
+
+.menulink a:link,a:visited {
+	color:#cc6600;
+	background: transparent;
+	text-decoration: none;
+	}
+
+.menulink a:visited {
+	color:#cc6600;
+	background: transparent;
+	text-decoration: none;
+	}
+
+.menulink A:active {
+	color: #cc6600;
+	background: transparent;
+	text-decoration: none
+}
+
+.menulink A:hover {
+	text-decoration: underline;
+	color: #cc6600;
+}
+
+
+/* Links  */
+
+A:link,A:visited {
+	color: #0D73A7;
+	background: transparent;
+	text-decoration: none;
+}
+
+A:active {
+	color: #ff0000;
+	background: transparent;
+	text-decoration: none
+}
+
+A:hover {
+	text-decoration: underline;
+	color: #cc6600;
+}
+
+/* Headers  */
+
+h1 {
+	margin-top: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	border: 1px solid #2D282E;
+	background-color: #0D73A7;
+	font-size: 16px;
+	color: #D6EEFA;
+}
+h1 a:link, h1 a:visited {
+	color: #D6EEFA;
+}
+
+h1 a:hover {
+	color: #ffffff;
+}
+
+h2 {
+	margin-top: 10px;
+	padding-top: 15px;
+	margin-bottom: 0px;
+	color: #002266;
+	font-size: 15px;
+}
+
+h3 {
+	margin-top: 6px;
+	padding-top: 6px;
+	margin-bottom: 0px;
+	color: #002266;
+	font-size: 11px;
+}
+
+h4 {
+	margin-top: 4px;
+	padding-top: 4px;
+	margin-bottom: 0px;
+	color : #2D282E;
+	font-size: 11px;
+}
+
+h2.motif {
+	margin-top: 3px;
+	padding-top: 0px;
+	margin-bottom: 4px;
+	color : #2D282E;
+	font-size: 12px;
+}
+
+/* Other tag formatting  */
+hr {
+	border: 1px dotted #2D282E;
+	height: 1px;
+}
+
+hr.solid {
+	border: 1px solid #2D282E;
+	height: 1px;
+}
+
+pre,tt {
+         font-size: 12px;
+}
+
+pre { 
+      background:#EEEEEE;
+ }
+
+
+center {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+blockquote {
+	color : #cc6600;
+	font-size: 12px;
+}
+
+body blockquote.information {
+	color : #009900;
+	font-size: 12px;
+}
+
+body blockquote.warning {
+	color : #aa0000;
+	font-size: 12px;
+}
+
+blockquote.demo {
+	color : #000000;
+	font-size: 12px;
+	font-style:italic;
+}
+
+
+
+/* TABLE */
+table.simple {
+	margin: 10px 20px 20px;
+	color: #000000;
+}
+
+table.simple td,table.list th {
+	font-size: 70%;
+	padding: 2px 10px;
+	background-color: #FFFFFF;
+	page-break-inside: auto;
+}
+
+table.simple th {
+	font-size: 70%;
+	background-color: #F6E6CA;
+}
+
+/* TABLE */
+
+/* table with white bg and small fonts */
+table.whitebg {
+	margin: 10px 20px 20px;
+	color: #000000;
+	border-left: 1px solid #cbcbb4;
+	border-top: 1px solid #cbcbb4;
+	border-spacing: 0px;
+}
+
+table.whitebg td,table.whitebg th {
+	font-size: 70%;
+	border-right: 1px solid #cbcbb4;
+	border-bottom: 1px solid #cbcbb4;
+	padding: 2px 10px;
+	background-color: #FFFFFF;
+	page-break-inside: auto;
+}
+
+
+/* table with blue bg and small font */
+table.whitebg th {
+	font-size: 70%;
+	background-color: #F6E6CA;
+}
+
+table.bluebg {
+	color: #333333;
+	border-left: 1px solid #cbcbb4;
+	border-top: 1px solid #cbcbb4;
+	}
+
+table.bluebg td,table.bluebg th {
+	font-size: 70%;
+	border-right: 1px solid #cbcbb4;
+	border-bottom: 1px solid #cbcbb4;
+	background-color: #D6EEFA;
+	page-break-inside: auto;
+}
+
+table.bluebg th {
+	background-color: #0D73A7;
+	color: #D6EEFA;
+}
+	
+/* Table on result pages - compatible with the sorttable type defined by javascript */
+
+table.sortable {
+	margin: 10px 20px 20px;
+	color: #000000;
+	border-left: 1px solid #cbcbb4;
+	border-right: 1px solid #cbcbb4;
+	border-top: 1px solid #cbcbb4;
+	border-bottom: 1px solid #cbcbb4;
+	border-spacing: 0px;
+}
+
+table.sortable td,table.sortable th {
+	padding: 2px 10px;
+	font-size: 70%;
+	border-right: 1px solid #cbcbb4;
+	border-bottom: 1px solid #cbcbb4;
+	padding: 2px 10px;
+	background-color: #FFFFFF;
+	page-break-inside: auto;
+}
+
+table.sortable th {
+	font-size: 70%;
+	background-color: #0D73A7;
+	color: #D6EEFA;
+}
+
+
+/* LINK TABLE ON RESULTS PAGES */
+table.resultlink {
+	margin-left:5px;
+	width : 90%;
+	color: #2D282E;
+	background-color: #D6EEFA;
+}
+
+
+table.resultlink td, table.resultlink th {
+	font-size: 70%;
+	padding-left:5px;
+	padding-right:3px;
+	text-align :left;
+	page-break-inside: auto;
+}
+
+/* COLLAPSIBLE MENUS */
+
+.menu_heading_open {
+	background: url(images_html/arrow_box_down.gif) no-repeat 5px 7px;
+	text-decoration: none;
+	padding: 0px 6px 4px 21px;
+	margin: 0;
+	cursor: pointer;
+	font-weight: bold;
+	display: block;
+}
+
+.menu_heading_closed {
+	background: url(images_html/arrow_box.gif) no-repeat 5px 7px;
+	text-decoration: underline; 
+	display: block;
+	padding:0px 6px 4px 21px;
+	margin: 0;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.menu_collapsible {
+	display: none;
+	margin-bottom: 10px;
+	margin-left: 30px;
+}
+
+.menu_collapsible_display {
+   display: block;
+   margin-bottom: 10px;
+   margin-left: 30px;
+}
+</style>
+<header>
+<body bgcolor='#ffffff'>
+<pre></pre>
+
+<table  class="sortable"  cellspacing='1' cellpadding='3' border='1'>
+<tr valign='top'>
+<th align='left' ></th>
+</tr>
+
+<tr valign='top'>
+<td></td>
+<td>jaspar_2022_nematodes_m10_MA0542.1</td>
+<td>jaspar_2022_nematodes_m11_MA0543.1</td>
+<td>jaspar_2022_nematodes_m12_MA0544.1</td>
+<td>jaspar_2022_nematodes_m13_MA0545.1</td>
+<td>jaspar_2022_nematodes_m14_MA0546.1</td>
+<td>jaspar_2022_nematodes_m15_MA0547.1</td>
+<td>jaspar_2022_nematodes_m16_MA0918.1</td>
+<td>jaspar_2022_nematodes_m17_MA0919.1</td>
+<td>jaspar_2022_nematodes_m18_MA0920.1</td>
+<td>jaspar_2022_nematodes_m19_MA0921.1</td>
+<td>jaspar_2022_nematodes_m1_MA0260.1</td>
+<td>jaspar_2022_nematodes_m20_MA0922.1</td>
+<td>jaspar_2022_nematodes_m21_MA0923.1</td>
+<td>jaspar_2022_nematodes_m22_MA0924.1</td>
+<td>jaspar_2022_nematodes_m23_MA0925.1</td>
+<td>jaspar_2022_nematodes_m24_MA0926.1</td>
+<td>jaspar_2022_nematodes_m25_MA0927.1</td>
+<td>jaspar_2022_nematodes_m26_MA0928.1</td>
+<td>jaspar_2022_nematodes_m27_MA1438.1</td>
+<td>jaspar_2022_nematodes_m28_MA1439.1</td>
+<td>jaspar_2022_nematodes_m29_MA1440.1</td>
+<td>jaspar_2022_nematodes_m2_MA0261.1</td>
+<td>jaspar_2022_nematodes_m30_MA1441.1</td>
+<td>jaspar_2022_nematodes_m31_MA1442.1</td>
+<td>jaspar_2022_nematodes_m32_MA1443.1</td>
+<td>jaspar_2022_nematodes_m33_MA1444.1</td>
+<td>jaspar_2022_nematodes_m34_MA1445.1</td>
+<td>jaspar_2022_nematodes_m35_MA1446.1</td>
+<td>jaspar_2022_nematodes_m36_MA1448.1</td>
+<td>jaspar_2022_nematodes_m37_MA1449.1</td>
+<td>jaspar_2022_nematodes_m38_MA1450.1</td>
+<td>jaspar_2022_nematodes_m39_MA1451.1</td>
+<td>jaspar_2022_nematodes_m3_MA0262.1</td>
+<td>jaspar_2022_nematodes_m40_MA1699.1</td>
+<td>jaspar_2022_nematodes_m41_MA1701.1</td>
+<td>jaspar_2022_nematodes_m42_MA1703.1</td>
+<td>jaspar_2022_nematodes_m43_MA1704.1</td>
+<td>jaspar_2022_nematodes_m4_MA0263.1</td>
+<td>jaspar_2022_nematodes_m5_MA0264.1</td>
+<td>jaspar_2022_nematodes_m6_MA0537.1</td>
+<td>jaspar_2022_nematodes_m7_MA0538.1</td>
+<td>jaspar_2022_nematodes_m8_MA0540.1</td>
+<td>jaspar_2022_nematodes_m9_MA0541.1</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m10_MA0542.1</td>
+<td>0</td>
+<td>0.776772</td>
+<td>0.837657</td>
+<td>0.804424</td>
+<td>0.6028</td>
+<td>0.589411</td>
+<td>0.664924</td>
+<td>0.569728</td>
+<td>0.613674</td>
+<td>0.662709</td>
+<td>0.738086</td>
+<td>0.642249</td>
+<td>0.528795</td>
+<td>0.513687</td>
+<td>0.778251</td>
+<td>0.724504</td>
+<td>0.540905</td>
+<td>0.606847</td>
+<td>0.617339</td>
+<td>0.243152</td>
+<td>0.497802</td>
+<td>0.740357</td>
+<td>0.684116</td>
+<td>0.58882</td>
+<td>0.562413</td>
+<td>0.689119</td>
+<td>0.707574</td>
+<td>0.692825</td>
+<td>0.739047</td>
+<td>0.729372</td>
+<td>0.825194</td>
+<td>0.752029</td>
+<td>0.757471</td>
+<td>0.710824</td>
+<td>0.236502</td>
+<td>0.290656</td>
+<td>0.70541</td>
+<td>0.793045</td>
+<td>0.745811</td>
+<td>0.679715</td>
+<td>0.886571</td>
+<td>0.837872</td>
+<td>0.833421</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m11_MA0543.1</td>
+<td>0.776772</td>
+<td>0</td>
+<td>0.648386</td>
+<td>0.818509</td>
+<td>0.728796</td>
+<td>0.669614</td>
+<td>0.746333</td>
+<td>0.926287</td>
+<td>0.793235</td>
+<td>0.854174</td>
+<td>0.793058</td>
+<td>0.899946</td>
+<td>0.904877</td>
+<td>0.844811</td>
+<td>0.660702</td>
+<td>0.74506</td>
+<td>0.895809</td>
+<td>0.86501</td>
+<td>0.792534</td>
+<td>0.778935</td>
+<td>0.787171</td>
+<td>0.856847</td>
+<td>0.823346</td>
+<td>0.944787</td>
+<td>0.87867</td>
+<td>0.777929</td>
+<td>0.833344</td>
+<td>0.767458</td>
+<td>0.754337</td>
+<td>0.824594</td>
+<td>0.758863</td>
+<td>0.87539</td>
+<td>0.845016</td>
+<td>0.69228</td>
+<td>0.671372</td>
+<td>0.758722</td>
+<td>0.819877</td>
+<td>0.817407</td>
+<td>0.813093</td>
+<td>0.560351</td>
+<td>0.723366</td>
+<td>0.742217</td>
+<td>0.786418</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m12_MA0544.1</td>
+<td>0.837657</td>
+<td>0.648386</td>
+<td>0</td>
+<td>0.583968</td>
+<td>0.745711</td>
+<td>0.715038</td>
+<td>0.647221</td>
+<td>0.920216</td>
+<td>0.739117</td>
+<td>0.661073</td>
+<td>0.728365</td>
+<td>0.900458</td>
+<td>0.910234</td>
+<td>0.899684</td>
+<td>0.568089</td>
+<td>0.860052</td>
+<td>0.913412</td>
+<td>0.923355</td>
+<td>0.667002</td>
+<td>0.798662</td>
+<td>0.799183</td>
+<td>0.790004</td>
+<td>0.884124</td>
+<td>0.925469</td>
+<td>0.893652</td>
+<td>0.787614</td>
+<td>0.786359</td>
+<td>0.708285</td>
+<td>0.757053</td>
+<td>0.781402</td>
+<td>0.901409</td>
+<td>0.7606</td>
+<td>0.699709</td>
+<td>0.849268</td>
+<td>0.815496</td>
+<td>0.737635</td>
+<td>0.685856</td>
+<td>0.812019</td>
+<td>0.742087</td>
+<td>0.799162</td>
+<td>0.694159</td>
+<td>0.842441</td>
+<td>0.725013</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m13_MA0545.1</td>
+<td>0.804424</td>
+<td>0.818509</td>
+<td>0.583968</td>
+<td>0</td>
+<td>0.749303</td>
+<td>0.657079</td>
+<td>0.605257</td>
+<td>0.812499</td>
+<td>0.63883</td>
+<td>0.783697</td>
+<td>0.802941</td>
+<td>0.874556</td>
+<td>0.830471</td>
+<td>0.860018</td>
+<td>0.728549</td>
+<td>0.865694</td>
+<td>0.856476</td>
+<td>0.844829</td>
+<td>0.756321</td>
+<td>0.738609</td>
+<td>0.654393</td>
+<td>0.609932</td>
+<td>0.86094</td>
+<td>0.806628</td>
+<td>0.867796</td>
+<td>0.8691</td>
+<td>0.807642</td>
+<td>0.67067</td>
+<td>0.761664</td>
+<td>0.516392</td>
+<td>0.82378</td>
+<td>0.725053</td>
+<td>0.728438</td>
+<td>0.834283</td>
+<td>0.810811</td>
+<td>0.697037</td>
+<td>0.756807</td>
+<td>0.835158</td>
+<td>0.639683</td>
+<td>0.822089</td>
+<td>0.837027</td>
+<td>0.894106</td>
+<td>0.854256</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m14_MA0546.1</td>
+<td>0.6028</td>
+<td>0.728796</td>
+<td>0.745711</td>
+<td>0.749303</td>
+<td>0</td>
+<td>0.712463</td>
+<td>0.71541</td>
+<td>0.672333</td>
+<td>0.430162</td>
+<td>0.667356</td>
+<td>0.740916</td>
+<td>0.604399</td>
+<td>0.590138</td>
+<td>0.579446</td>
+<td>0.654433</td>
+<td>0.56571</td>
+<td>0.672592</td>
+<td>0.649036</td>
+<td>0.758313</td>
+<td>0.687271</td>
+<td>0.533704</td>
+<td>0.721515</td>
+<td>0.640993</td>
+<td>0.618785</td>
+<td>0.765067</td>
+<td>0.739877</td>
+<td>0.818862</td>
+<td>0.374922</td>
+<td>0.582932</td>
+<td>0.837981</td>
+<td>0.624152</td>
+<td>0.614042</td>
+<td>0.625311</td>
+<td>0.694814</td>
+<td>0.673421</td>
+<td>0.636341</td>
+<td>0.702928</td>
+<td>0.671792</td>
+<td>0.817864</td>
+<td>0.587108</td>
+<td>0.627517</td>
+<td>0.785553</td>
+<td>0.762973</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m15_MA0547.1</td>
+<td>0.589411</td>
+<td>0.669614</td>
+<td>0.715038</td>
+<td>0.657079</td>
+<td>0.712463</td>
+<td>0</td>
+<td>0.567003</td>
+<td>0.742507</td>
+<td>0.704192</td>
+<td>0.745628</td>
+<td>0.855304</td>
+<td>0.680522</td>
+<td>0.753351</td>
+<td>0.769636</td>
+<td>0.735346</td>
+<td>0.730128</td>
+<td>0.750373</td>
+<td>0.734522</td>
+<td>0.602848</td>
+<td>0.59622</td>
+<td>0.729212</td>
+<td>0.837574</td>
+<td>0.740096</td>
+<td>0.764358</td>
+<td>0.709041</td>
+<td>0.615786</td>
+<td>0.692661</td>
+<td>0.654184</td>
+<td>0.736349</td>
+<td>0.792547</td>
+<td>0.766927</td>
+<td>0.639104</td>
+<td>0.479201</td>
+<td>0.614426</td>
+<td>0.610212</td>
+<td>0.548872</td>
+<td>0.593185</td>
+<td>0.573264</td>
+<td>0.82171</td>
+<td>0.63987</td>
+<td>0.879845</td>
+<td>0.875704</td>
+<td>0.761338</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m16_MA0918.1</td>
+<td>0.664924</td>
+<td>0.746333</td>
+<td>0.647221</td>
+<td>0.605257</td>
+<td>0.71541</td>
+<td>0.567003</td>
+<td>0</td>
+<td>0.832455</td>
+<td>0.708407</td>
+<td>0.799643</td>
+<td>0.796631</td>
+<td>0.749598</td>
+<td>0.803538</td>
+<td>0.718553</td>
+<td>0.516496</td>
+<td>0.853083</td>
+<td>0.771925</td>
+<td>0.828109</td>
+<td>0.50045</td>
+<td>0.597193</td>
+<td>0.651773</td>
+<td>0.813765</td>
+<td>0.806413</td>
+<td>0.81035</td>
+<td>0.82423</td>
+<td>0.778307</td>
+<td>0.812119</td>
+<td>0.688986</td>
+<td>0.725227</td>
+<td>0.727264</td>
+<td>0.755123</td>
+<td>0.544396</td>
+<td>0.733632</td>
+<td>0.812647</td>
+<td>0.595647</td>
+<td>0.514171</td>
+<td>0.525337</td>
+<td>0.836978</td>
+<td>0.738215</td>
+<td>0.619214</td>
+<td>0.812953</td>
+<td>0.829478</td>
+<td>0.846693</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m17_MA0919.1</td>
+<td>0.569728</td>
+<td>0.926287</td>
+<td>0.920216</td>
+<td>0.812499</td>
+<td>0.672333</td>
+<td>0.742507</td>
+<td>0.832455</td>
+<td>0</td>
+<td>0.635312</td>
+<td>0.585618</td>
+<td>0.919959</td>
+<td>0.614048</td>
+<td>0.124511</td>
+<td>0.380344</td>
+<td>0.856306</td>
+<td>0.787737</td>
+<td>0.243911</td>
+<td>0.122441</td>
+<td>0.769686</td>
+<td>0.526311</td>
+<td>0.706272</td>
+<td>0.875964</td>
+<td>0.277096</td>
+<td>0.262065</td>
+<td>0.531005</td>
+<td>0.6538</td>
+<td>0.727937</td>
+<td>0.656518</td>
+<td>0.779397</td>
+<td>0.86185</td>
+<td>0.629325</td>
+<td>0.839824</td>
+<td>0.832232</td>
+<td>0.71541</td>
+<td>0.573816</td>
+<td>0.486554</td>
+<td>0.728439</td>
+<td>0.598416</td>
+<td>0.652674</td>
+<td>0.815841</td>
+<td>0.951427</td>
+<td>0.900352</td>
+<td>0.821947</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m18_MA0920.1</td>
+<td>0.613674</td>
+<td>0.793235</td>
+<td>0.739117</td>
+<td>0.63883</td>
+<td>0.430162</td>
+<td>0.704192</td>
+<td>0.708407</td>
+<td>0.635312</td>
+<td>0</td>
+<td>0.657054</td>
+<td>0.658804</td>
+<td>0.627236</td>
+<td>0.558937</td>
+<td>0.454905</td>
+<td>0.649551</td>
+<td>0.498738</td>
+<td>0.513431</td>
+<td>0.65048</td>
+<td>0.791499</td>
+<td>0.44842</td>
+<td>0.204801</td>
+<td>0.519273</td>
+<td>0.699362</td>
+<td>0.616082</td>
+<td>0.489904</td>
+<td>0.749168</td>
+<td>0.771645</td>
+<td>0.369992</td>
+<td>0.759574</td>
+<td>0.799321</td>
+<td>0.802262</td>
+<td>0.752359</td>
+<td>0.686444</td>
+<td>0.736203</td>
+<td>0.680078</td>
+<td>0.653469</td>
+<td>0.737471</td>
+<td>0.724388</td>
+<td>0.783219</td>
+<td>0.782687</td>
+<td>0.741241</td>
+<td>0.892556</td>
+<td>0.83283</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m19_MA0921.1</td>
+<td>0.662709</td>
+<td>0.854174</td>
+<td>0.661073</td>
+<td>0.783697</td>
+<td>0.667356</td>
+<td>0.745628</td>
+<td>0.799643</td>
+<td>0.585618</td>
+<td>0.657054</td>
+<td>0</td>
+<td>0.795186</td>
+<td>0.67513</td>
+<td>0.550515</td>
+<td>0.626027</td>
+<td>0.782138</td>
+<td>0.534636</td>
+<td>0.629037</td>
+<td>0.591969</td>
+<td>0.825488</td>
+<td>0.570606</td>
+<td>0.712405</td>
+<td>0.787192</td>
+<td>0.620064</td>
+<td>0.515321</td>
+<td>0.656938</td>
+<td>0.712448</td>
+<td>0.238585</td>
+<td>0.783786</td>
+<td>0.726566</td>
+<td>0.882402</td>
+<td>0.727043</td>
+<td>0.77154</td>
+<td>0.775339</td>
+<td>0.523229</td>
+<td>0.614166</td>
+<td>0.49106</td>
+<td>0.771921</td>
+<td>0.679917</td>
+<td>0.741032</td>
+<td>0.680593</td>
+<td>0.912566</td>
+<td>0.766984</td>
+<td>0.874983</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m1_MA0260.1</td>
+<td>0.738086</td>
+<td>0.793058</td>
+<td>0.728365</td>
+<td>0.802941</td>
+<td>0.740916</td>
+<td>0.855304</td>
+<td>0.796631</td>
+<td>0.919959</td>
+<td>0.658804</td>
+<td>0.795186</td>
+<td>0</td>
+<td>0.843615</td>
+<td>0.887277</td>
+<td>0.814476</td>
+<td>0.727678</td>
+<td>0.786787</td>
+<td>0.852497</td>
+<td>0.855122</td>
+<td>0.743757</td>
+<td>0.717083</td>
+<td>0.683865</td>
+<td>0.425504</td>
+<td>0.843266</td>
+<td>0.864291</td>
+<td>0.594947</td>
+<td>0.715527</td>
+<td>0.762039</td>
+<td>0.753362</td>
+<td>0.679784</td>
+<td>0.809854</td>
+<td>0.80463</td>
+<td>0.716621</td>
+<td>0.767695</td>
+<td>0.834277</td>
+<td>0.777093</td>
+<td>0.804592</td>
+<td>0.783539</td>
+<td>0.626783</td>
+<td>0.739887</td>
+<td>0.720504</td>
+<td>0.841655</td>
+<td>0.83285</td>
+<td>0.749312</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m20_MA0922.1</td>
+<td>0.642249</td>
+<td>0.899946</td>
+<td>0.900458</td>
+<td>0.874556</td>
+<td>0.604399</td>
+<td>0.680522</td>
+<td>0.749598</td>
+<td>0.614048</td>
+<td>0.627236</td>
+<td>0.67513</td>
+<td>0.843615</td>
+<td>0</td>
+<td>0.578593</td>
+<td>0.607428</td>
+<td>0.858147</td>
+<td>0.62162</td>
+<td>0.616833</td>
+<td>0.582989</td>
+<td>0.442057</td>
+<td>0.681937</td>
+<td>0.652059</td>
+<td>0.773499</td>
+<td>0.587257</td>
+<td>0.427073</td>
+<td>0.618267</td>
+<td>0.430437</td>
+<td>0.777481</td>
+<td>0.691399</td>
+<td>0.634911</td>
+<td>0.614816</td>
+<td>0.761371</td>
+<td>0.703675</td>
+<td>0.593888</td>
+<td>0.719496</td>
+<td>0.697293</td>
+<td>0.696621</td>
+<td>0.435902</td>
+<td>0.707626</td>
+<td>0.742717</td>
+<td>0.761058</td>
+<td>0.81969</td>
+<td>0.836884</td>
+<td>0.86842</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m21_MA0923.1</td>
+<td>0.528795</td>
+<td>0.904877</td>
+<td>0.910234</td>
+<td>0.830471</td>
+<td>0.590138</td>
+<td>0.753351</td>
+<td>0.803538</td>
+<td>0.124511</td>
+<td>0.558937</td>
+<td>0.550515</td>
+<td>0.887277</td>
+<td>0.578593</td>
+<td>0</td>
+<td>0.244811</td>
+<td>0.819816</td>
+<td>0.786784</td>
+<td>0.148415</td>
+<td>0.208337</td>
+<td>0.725814</td>
+<td>0.480935</td>
+<td>0.647283</td>
+<td>0.886481</td>
+<td>0.282383</td>
+<td>0.234652</td>
+<td>0.462668</td>
+<td>0.607913</td>
+<td>0.724095</td>
+<td>0.65708</td>
+<td>0.754248</td>
+<td>0.846108</td>
+<td>0.596222</td>
+<td>0.777782</td>
+<td>0.813499</td>
+<td>0.729878</td>
+<td>0.552015</td>
+<td>0.556931</td>
+<td>0.681854</td>
+<td>0.567334</td>
+<td>0.627446</td>
+<td>0.768249</td>
+<td>0.921216</td>
+<td>0.847915</td>
+<td>0.788759</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m22_MA0924.1</td>
+<td>0.513687</td>
+<td>0.844811</td>
+<td>0.899684</td>
+<td>0.860018</td>
+<td>0.579446</td>
+<td>0.769636</td>
+<td>0.718553</td>
+<td>0.380344</td>
+<td>0.454905</td>
+<td>0.626027</td>
+<td>0.814476</td>
+<td>0.607428</td>
+<td>0.244811</td>
+<td>0</td>
+<td>0.829706</td>
+<td>0.7407</td>
+<td>0.189436</td>
+<td>0.420636</td>
+<td>0.692018</td>
+<td>0.413382</td>
+<td>0.608006</td>
+<td>0.825757</td>
+<td>0.409262</td>
+<td>0.286708</td>
+<td>0.514094</td>
+<td>0.516574</td>
+<td>0.699863</td>
+<td>0.637079</td>
+<td>0.752923</td>
+<td>0.781237</td>
+<td>0.639293</td>
+<td>0.785759</td>
+<td>0.763421</td>
+<td>0.726405</td>
+<td>0.610787</td>
+<td>0.621143</td>
+<td>0.605825</td>
+<td>0.671308</td>
+<td>0.72212</td>
+<td>0.721469</td>
+<td>0.893304</td>
+<td>0.765689</td>
+<td>0.799153</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m23_MA0925.1</td>
+<td>0.778251</td>
+<td>0.660702</td>
+<td>0.568089</td>
+<td>0.728549</td>
+<td>0.654433</td>
+<td>0.735346</td>
+<td>0.516496</td>
+<td>0.856306</td>
+<td>0.649551</td>
+<td>0.782138</td>
+<td>0.727678</td>
+<td>0.858147</td>
+<td>0.819816</td>
+<td>0.829706</td>
+<td>0</td>
+<td>0.758291</td>
+<td>0.86328</td>
+<td>0.822173</td>
+<td>0.713674</td>
+<td>0.714571</td>
+<td>0.675794</td>
+<td>0.810396</td>
+<td>0.808697</td>
+<td>0.881102</td>
+<td>0.820461</td>
+<td>0.817961</td>
+<td>0.83701</td>
+<td>0.552868</td>
+<td>0.702547</td>
+<td>0.809715</td>
+<td>0.82503</td>
+<td>0.704081</td>
+<td>0.726645</td>
+<td>0.812019</td>
+<td>0.751022</td>
+<td>0.673945</td>
+<td>0.780266</td>
+<td>0.819899</td>
+<td>0.756999</td>
+<td>0.738164</td>
+<td>0.576599</td>
+<td>0.767728</td>
+<td>0.777353</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m24_MA0926.1</td>
+<td>0.724504</td>
+<td>0.74506</td>
+<td>0.860052</td>
+<td>0.865694</td>
+<td>0.56571</td>
+<td>0.730128</td>
+<td>0.853083</td>
+<td>0.787737</td>
+<td>0.498738</td>
+<td>0.534636</td>
+<td>0.786787</td>
+<td>0.62162</td>
+<td>0.786784</td>
+<td>0.7407</td>
+<td>0.758291</td>
+<td>0</td>
+<td>0.719435</td>
+<td>0.761525</td>
+<td>0.83932</td>
+<td>0.71364</td>
+<td>0.71726</td>
+<td>0.729316</td>
+<td>0.732825</td>
+<td>0.59145</td>
+<td>0.654878</td>
+<td>0.726234</td>
+<td>0.561031</td>
+<td>0.709395</td>
+<td>0.701219</td>
+<td>0.844029</td>
+<td>0.645247</td>
+<td>0.849056</td>
+<td>0.70891</td>
+<td>0.685725</td>
+<td>0.635629</td>
+<td>0.721645</td>
+<td>0.795723</td>
+<td>0.759438</td>
+<td>0.844944</td>
+<td>0.769777</td>
+<td>0.732637</td>
+<td>0.836598</td>
+<td>0.90689</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m25_MA0927.1</td>
+<td>0.540905</td>
+<td>0.895809</td>
+<td>0.913412</td>
+<td>0.856476</td>
+<td>0.672592</td>
+<td>0.750373</td>
+<td>0.771925</td>
+<td>0.243911</td>
+<td>0.513431</td>
+<td>0.629037</td>
+<td>0.852497</td>
+<td>0.616833</td>
+<td>0.148415</td>
+<td>0.189436</td>
+<td>0.86328</td>
+<td>0.719435</td>
+<td>0</td>
+<td>0.289369</td>
+<td>0.729681</td>
+<td>0.42762</td>
+<td>0.61452</td>
+<td>0.852497</td>
+<td>0.403793</td>
+<td>0.237671</td>
+<td>0.423954</td>
+<td>0.628657</td>
+<td>0.715736</td>
+<td>0.710015</td>
+<td>0.673799</td>
+<td>0.83886</td>
+<td>0.653359</td>
+<td>0.826967</td>
+<td>0.806299</td>
+<td>0.750901</td>
+<td>0.551521</td>
+<td>0.581272</td>
+<td>0.679134</td>
+<td>0.591573</td>
+<td>0.674268</td>
+<td>0.79749</td>
+<td>0.942567</td>
+<td>0.889422</td>
+<td>0.821004</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m26_MA0928.1</td>
+<td>0.606847</td>
+<td>0.86501</td>
+<td>0.923355</td>
+<td>0.844829</td>
+<td>0.649036</td>
+<td>0.734522</td>
+<td>0.828109</td>
+<td>0.122441</td>
+<td>0.65048</td>
+<td>0.591969</td>
+<td>0.855122</td>
+<td>0.582989</td>
+<td>0.208337</td>
+<td>0.420636</td>
+<td>0.822173</td>
+<td>0.761525</td>
+<td>0.289369</td>
+<td>0</td>
+<td>0.764573</td>
+<td>0.608985</td>
+<td>0.717829</td>
+<td>0.838927</td>
+<td>0.206323</td>
+<td>0.304176</td>
+<td>0.580904</td>
+<td>0.670281</td>
+<td>0.703746</td>
+<td>0.615034</td>
+<td>0.76155</td>
+<td>0.856483</td>
+<td>0.603709</td>
+<td>0.821974</td>
+<td>0.826792</td>
+<td>0.715468</td>
+<td>0.610935</td>
+<td>0.499885</td>
+<td>0.728114</td>
+<td>0.569872</td>
+<td>0.573514</td>
+<td>0.774959</td>
+<td>0.929839</td>
+<td>0.906515</td>
+<td>0.827929</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m27_MA1438.1</td>
+<td>0.617339</td>
+<td>0.792534</td>
+<td>0.667002</td>
+<td>0.756321</td>
+<td>0.758313</td>
+<td>0.602848</td>
+<td>0.50045</td>
+<td>0.769686</td>
+<td>0.791499</td>
+<td>0.825488</td>
+<td>0.743757</td>
+<td>0.442057</td>
+<td>0.725814</td>
+<td>0.692018</td>
+<td>0.713674</td>
+<td>0.83932</td>
+<td>0.729681</td>
+<td>0.764573</td>
+<td>0</td>
+<td>0.607386</td>
+<td>0.728064</td>
+<td>0.769507</td>
+<td>0.738317</td>
+<td>0.770834</td>
+<td>0.795064</td>
+<td>0.622312</td>
+<td>0.823433</td>
+<td>0.785345</td>
+<td>0.66207</td>
+<td>0.442831</td>
+<td>0.734641</td>
+<td>0.501997</td>
+<td>0.667955</td>
+<td>0.801426</td>
+<td>0.69325</td>
+<td>0.630025</td>
+<td>0.13113</td>
+<td>0.763889</td>
+<td>0.582621</td>
+<td>0.771301</td>
+<td>0.849374</td>
+<td>0.857379</td>
+<td>0.787969</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m28_MA1439.1</td>
+<td>0.243152</td>
+<td>0.778935</td>
+<td>0.798662</td>
+<td>0.738609</td>
+<td>0.687271</td>
+<td>0.59622</td>
+<td>0.597193</td>
+<td>0.526311</td>
+<td>0.44842</td>
+<td>0.570606</td>
+<td>0.717083</td>
+<td>0.681937</td>
+<td>0.480935</td>
+<td>0.413382</td>
+<td>0.714571</td>
+<td>0.71364</td>
+<td>0.42762</td>
+<td>0.608985</td>
+<td>0.607386</td>
+<td>0</td>
+<td>0.53372</td>
+<td>0.684381</td>
+<td>0.639442</td>
+<td>0.596147</td>
+<td>0.397653</td>
+<td>0.695196</td>
+<td>0.650881</td>
+<td>0.637207</td>
+<td>0.690604</td>
+<td>0.674494</td>
+<td>0.805038</td>
+<td>0.6681</td>
+<td>0.783705</td>
+<td>0.721667</td>
+<td>0.278526</td>
+<td>0.301317</td>
+<td>0.668126</td>
+<td>0.79924</td>
+<td>0.755714</td>
+<td>0.617903</td>
+<td>0.832722</td>
+<td>0.821419</td>
+<td>0.8338</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m29_MA1440.1</td>
+<td>0.497802</td>
+<td>0.787171</td>
+<td>0.799183</td>
+<td>0.654393</td>
+<td>0.533704</td>
+<td>0.729212</td>
+<td>0.651773</td>
+<td>0.706272</td>
+<td>0.204801</td>
+<td>0.712405</td>
+<td>0.683865</td>
+<td>0.652059</td>
+<td>0.647283</td>
+<td>0.608006</td>
+<td>0.675794</td>
+<td>0.71726</td>
+<td>0.61452</td>
+<td>0.717829</td>
+<td>0.728064</td>
+<td>0.53372</td>
+<td>0</td>
+<td>0.538485</td>
+<td>0.662275</td>
+<td>0.588458</td>
+<td>0.711888</td>
+<td>0.701269</td>
+<td>0.744541</td>
+<td>0.52632</td>
+<td>0.860464</td>
+<td>0.832313</td>
+<td>0.730537</td>
+<td>0.726134</td>
+<td>0.665524</td>
+<td>0.685218</td>
+<td>0.572717</td>
+<td>0.645762</td>
+<td>0.793254</td>
+<td>0.721325</td>
+<td>0.818095</td>
+<td>0.645338</td>
+<td>0.759832</td>
+<td>0.833819</td>
+<td>0.797562</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m2_MA0261.1</td>
+<td>0.740357</td>
+<td>0.856847</td>
+<td>0.790004</td>
+<td>0.609932</td>
+<td>0.721515</td>
+<td>0.837574</td>
+<td>0.813765</td>
+<td>0.875964</td>
+<td>0.519273</td>
+<td>0.787192</td>
+<td>0.425504</td>
+<td>0.773499</td>
+<td>0.886481</td>
+<td>0.825757</td>
+<td>0.810396</td>
+<td>0.729316</td>
+<td>0.852497</td>
+<td>0.838927</td>
+<td>0.769507</td>
+<td>0.684381</td>
+<td>0.538485</td>
+<td>0</td>
+<td>0.856247</td>
+<td>0.849701</td>
+<td>0.741576</td>
+<td>0.764363</td>
+<td>0.830704</td>
+<td>0.66561</td>
+<td>0.753353</td>
+<td>0.787213</td>
+<td>0.771588</td>
+<td>0.694255</td>
+<td>0.722642</td>
+<td>0.865807</td>
+<td>0.790076</td>
+<td>0.803294</td>
+<td>0.830854</td>
+<td>0.787941</td>
+<td>0.785652</td>
+<td>0.734507</td>
+<td>0.793343</td>
+<td>0.829511</td>
+<td>0.751541</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m30_MA1441.1</td>
+<td>0.684116</td>
+<td>0.823346</td>
+<td>0.884124</td>
+<td>0.86094</td>
+<td>0.640993</td>
+<td>0.740096</td>
+<td>0.806413</td>
+<td>0.277096</td>
+<td>0.699362</td>
+<td>0.620064</td>
+<td>0.843266</td>
+<td>0.587257</td>
+<td>0.282383</td>
+<td>0.409262</td>
+<td>0.808697</td>
+<td>0.732825</td>
+<td>0.403793</td>
+<td>0.206323</td>
+<td>0.738317</td>
+<td>0.639442</td>
+<td>0.662275</td>
+<td>0.856247</td>
+<td>0</td>
+<td>0.383408</td>
+<td>0.523899</td>
+<td>0.548255</td>
+<td>0.702219</td>
+<td>0.650726</td>
+<td>0.788355</td>
+<td>0.816498</td>
+<td>0.587741</td>
+<td>0.759978</td>
+<td>0.801921</td>
+<td>0.694877</td>
+<td>0.640304</td>
+<td>0.580093</td>
+<td>0.674775</td>
+<td>0.660264</td>
+<td>0.637394</td>
+<td>0.757282</td>
+<td>0.915472</td>
+<td>0.821043</td>
+<td>0.814369</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m31_MA1442.1</td>
+<td>0.58882</td>
+<td>0.944787</td>
+<td>0.925469</td>
+<td>0.806628</td>
+<td>0.618785</td>
+<td>0.764358</td>
+<td>0.81035</td>
+<td>0.262065</td>
+<td>0.616082</td>
+<td>0.515321</td>
+<td>0.864291</td>
+<td>0.427073</td>
+<td>0.234652</td>
+<td>0.286708</td>
+<td>0.881102</td>
+<td>0.59145</td>
+<td>0.237671</td>
+<td>0.304176</td>
+<td>0.770834</td>
+<td>0.596147</td>
+<td>0.588458</td>
+<td>0.849701</td>
+<td>0.383408</td>
+<td>0</td>
+<td>0.523185</td>
+<td>0.652263</td>
+<td>0.594084</td>
+<td>0.724521</td>
+<td>0.661195</td>
+<td>0.847865</td>
+<td>0.673338</td>
+<td>0.813899</td>
+<td>0.831925</td>
+<td>0.704691</td>
+<td>0.686954</td>
+<td>0.640376</td>
+<td>0.74041</td>
+<td>0.633743</td>
+<td>0.68968</td>
+<td>0.797423</td>
+<td>0.954321</td>
+<td>0.868485</td>
+<td>0.847176</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m32_MA1443.1</td>
+<td>0.562413</td>
+<td>0.87867</td>
+<td>0.893652</td>
+<td>0.867796</td>
+<td>0.765067</td>
+<td>0.709041</td>
+<td>0.82423</td>
+<td>0.531005</td>
+<td>0.489904</td>
+<td>0.656938</td>
+<td>0.594947</td>
+<td>0.618267</td>
+<td>0.462668</td>
+<td>0.514094</td>
+<td>0.820461</td>
+<td>0.654878</td>
+<td>0.423954</td>
+<td>0.580904</td>
+<td>0.795064</td>
+<td>0.397653</td>
+<td>0.711888</td>
+<td>0.741576</td>
+<td>0.523899</td>
+<td>0.523185</td>
+<td>0</td>
+<td>0.661268</td>
+<td>0.641242</td>
+<td>0.673546</td>
+<td>0.690567</td>
+<td>0.807474</td>
+<td>0.702215</td>
+<td>0.784784</td>
+<td>0.824153</td>
+<td>0.731392</td>
+<td>0.562841</td>
+<td>0.60715</td>
+<td>0.724287</td>
+<td>0.680208</td>
+<td>0.847845</td>
+<td>0.783455</td>
+<td>0.885547</td>
+<td>0.84089</td>
+<td>0.838621</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m33_MA1444.1</td>
+<td>0.689119</td>
+<td>0.777929</td>
+<td>0.787614</td>
+<td>0.8691</td>
+<td>0.739877</td>
+<td>0.615786</td>
+<td>0.778307</td>
+<td>0.6538</td>
+<td>0.749168</td>
+<td>0.712448</td>
+<td>0.715527</td>
+<td>0.430437</td>
+<td>0.607913</td>
+<td>0.516574</td>
+<td>0.817961</td>
+<td>0.726234</td>
+<td>0.628657</td>
+<td>0.670281</td>
+<td>0.622312</td>
+<td>0.695196</td>
+<td>0.701269</td>
+<td>0.764363</td>
+<td>0.548255</td>
+<td>0.652263</td>
+<td>0.661268</td>
+<td>0</td>
+<td>0.661257</td>
+<td>0.741346</td>
+<td>0.782881</td>
+<td>0.677368</td>
+<td>0.60147</td>
+<td>0.780201</td>
+<td>0.432905</td>
+<td>0.69104</td>
+<td>0.688734</td>
+<td>0.676667</td>
+<td>0.481818</td>
+<td>0.709839</td>
+<td>0.796909</td>
+<td>0.622874</td>
+<td>0.884435</td>
+<td>0.699236</td>
+<td>0.732323</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m34_MA1445.1</td>
+<td>0.707574</td>
+<td>0.833344</td>
+<td>0.786359</td>
+<td>0.807642</td>
+<td>0.818862</td>
+<td>0.692661</td>
+<td>0.812119</td>
+<td>0.727937</td>
+<td>0.771645</td>
+<td>0.238585</td>
+<td>0.762039</td>
+<td>0.777481</td>
+<td>0.724095</td>
+<td>0.699863</td>
+<td>0.83701</td>
+<td>0.561031</td>
+<td>0.715736</td>
+<td>0.703746</td>
+<td>0.823433</td>
+<td>0.650881</td>
+<td>0.744541</td>
+<td>0.830704</td>
+<td>0.702219</td>
+<td>0.594084</td>
+<td>0.641242</td>
+<td>0.661257</td>
+<td>0</td>
+<td>0.822933</td>
+<td>0.848943</td>
+<td>0.880449</td>
+<td>0.705244</td>
+<td>0.833496</td>
+<td>0.781805</td>
+<td>0.49062</td>
+<td>0.6841</td>
+<td>0.619219</td>
+<td>0.82124</td>
+<td>0.75592</td>
+<td>0.76271</td>
+<td>0.575448</td>
+<td>0.933408</td>
+<td>0.801494</td>
+<td>0.875689</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m35_MA1446.1</td>
+<td>0.692825</td>
+<td>0.767458</td>
+<td>0.708285</td>
+<td>0.67067</td>
+<td>0.374922</td>
+<td>0.654184</td>
+<td>0.688986</td>
+<td>0.656518</td>
+<td>0.369992</td>
+<td>0.783786</td>
+<td>0.753362</td>
+<td>0.691399</td>
+<td>0.65708</td>
+<td>0.637079</td>
+<td>0.552868</td>
+<td>0.709395</td>
+<td>0.710015</td>
+<td>0.615034</td>
+<td>0.785345</td>
+<td>0.637207</td>
+<td>0.52632</td>
+<td>0.66561</td>
+<td>0.650726</td>
+<td>0.724521</td>
+<td>0.673546</td>
+<td>0.741346</td>
+<td>0.822933</td>
+<td>0</td>
+<td>0.752736</td>
+<td>0.764325</td>
+<td>0.778106</td>
+<td>0.747386</td>
+<td>0.665044</td>
+<td>0.768429</td>
+<td>0.699324</td>
+<td>0.604916</td>
+<td>0.743187</td>
+<td>0.745836</td>
+<td>0.78453</td>
+<td>0.75256</td>
+<td>0.551124</td>
+<td>0.864998</td>
+<td>0.825557</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m36_MA1448.1</td>
+<td>0.739047</td>
+<td>0.754337</td>
+<td>0.757053</td>
+<td>0.761664</td>
+<td>0.582932</td>
+<td>0.736349</td>
+<td>0.725227</td>
+<td>0.779397</td>
+<td>0.759574</td>
+<td>0.726566</td>
+<td>0.679784</td>
+<td>0.634911</td>
+<td>0.754248</td>
+<td>0.752923</td>
+<td>0.702547</td>
+<td>0.701219</td>
+<td>0.673799</td>
+<td>0.76155</td>
+<td>0.66207</td>
+<td>0.690604</td>
+<td>0.860464</td>
+<td>0.753353</td>
+<td>0.788355</td>
+<td>0.661195</td>
+<td>0.690567</td>
+<td>0.782881</td>
+<td>0.848943</td>
+<td>0.752736</td>
+<td>0</td>
+<td>0.709419</td>
+<td>0.758638</td>
+<td>0.608327</td>
+<td>0.797417</td>
+<td>0.840773</td>
+<td>0.75777</td>
+<td>0.720715</td>
+<td>0.680146</td>
+<td>0.742907</td>
+<td>0.747105</td>
+<td>0.801751</td>
+<td>0.763008</td>
+<td>0.81105</td>
+<td>0.839043</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m37_MA1449.1</td>
+<td>0.729372</td>
+<td>0.824594</td>
+<td>0.781402</td>
+<td>0.516392</td>
+<td>0.837981</td>
+<td>0.792547</td>
+<td>0.727264</td>
+<td>0.86185</td>
+<td>0.799321</td>
+<td>0.882402</td>
+<td>0.809854</td>
+<td>0.614816</td>
+<td>0.846108</td>
+<td>0.781237</td>
+<td>0.809715</td>
+<td>0.844029</td>
+<td>0.83886</td>
+<td>0.856483</td>
+<td>0.442831</td>
+<td>0.674494</td>
+<td>0.832313</td>
+<td>0.787213</td>
+<td>0.816498</td>
+<td>0.847865</td>
+<td>0.807474</td>
+<td>0.677368</td>
+<td>0.880449</td>
+<td>0.764325</td>
+<td>0.709419</td>
+<td>0</td>
+<td>0.792988</td>
+<td>0.71789</td>
+<td>0.809417</td>
+<td>0.894778</td>
+<td>0.755256</td>
+<td>0.745639</td>
+<td>0.503632</td>
+<td>0.783876</td>
+<td>0.422985</td>
+<td>0.750051</td>
+<td>0.827835</td>
+<td>0.85046</td>
+<td>0.676532</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m38_MA1450.1</td>
+<td>0.825194</td>
+<td>0.758863</td>
+<td>0.901409</td>
+<td>0.82378</td>
+<td>0.624152</td>
+<td>0.766927</td>
+<td>0.755123</td>
+<td>0.629325</td>
+<td>0.802262</td>
+<td>0.727043</td>
+<td>0.80463</td>
+<td>0.761371</td>
+<td>0.596222</td>
+<td>0.639293</td>
+<td>0.82503</td>
+<td>0.645247</td>
+<td>0.653359</td>
+<td>0.603709</td>
+<td>0.734641</td>
+<td>0.805038</td>
+<td>0.730537</td>
+<td>0.771588</td>
+<td>0.587741</td>
+<td>0.673338</td>
+<td>0.702215</td>
+<td>0.60147</td>
+<td>0.705244</td>
+<td>0.778106</td>
+<td>0.758638</td>
+<td>0.792988</td>
+<td>0</td>
+<td>0.698631</td>
+<td>0.71259</td>
+<td>0.577539</td>
+<td>0.782242</td>
+<td>0.772685</td>
+<td>0.761161</td>
+<td>0.755033</td>
+<td>0.599059</td>
+<td>0.575491</td>
+<td>0.833626</td>
+<td>0.872291</td>
+<td>0.752458</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m39_MA1451.1</td>
+<td>0.752029</td>
+<td>0.87539</td>
+<td>0.7606</td>
+<td>0.725053</td>
+<td>0.614042</td>
+<td>0.639104</td>
+<td>0.544396</td>
+<td>0.839824</td>
+<td>0.752359</td>
+<td>0.77154</td>
+<td>0.716621</td>
+<td>0.703675</td>
+<td>0.777782</td>
+<td>0.785759</td>
+<td>0.704081</td>
+<td>0.849056</td>
+<td>0.826967</td>
+<td>0.821974</td>
+<td>0.501997</td>
+<td>0.6681</td>
+<td>0.726134</td>
+<td>0.694255</td>
+<td>0.759978</td>
+<td>0.813899</td>
+<td>0.784784</td>
+<td>0.780201</td>
+<td>0.833496</td>
+<td>0.747386</td>
+<td>0.608327</td>
+<td>0.71789</td>
+<td>0.698631</td>
+<td>0</td>
+<td>0.720586</td>
+<td>0.696518</td>
+<td>0.786941</td>
+<td>0.765474</td>
+<td>0.597718</td>
+<td>0.843329</td>
+<td>0.720918</td>
+<td>0.622495</td>
+<td>0.892845</td>
+<td>0.792051</td>
+<td>0.80711</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m3_MA0262.1</td>
+<td>0.757471</td>
+<td>0.845016</td>
+<td>0.699709</td>
+<td>0.728438</td>
+<td>0.625311</td>
+<td>0.479201</td>
+<td>0.733632</td>
+<td>0.832232</td>
+<td>0.686444</td>
+<td>0.775339</td>
+<td>0.767695</td>
+<td>0.593888</td>
+<td>0.813499</td>
+<td>0.763421</td>
+<td>0.726645</td>
+<td>0.70891</td>
+<td>0.806299</td>
+<td>0.826792</td>
+<td>0.667955</td>
+<td>0.783705</td>
+<td>0.665524</td>
+<td>0.722642</td>
+<td>0.801921</td>
+<td>0.831925</td>
+<td>0.824153</td>
+<td>0.432905</td>
+<td>0.781805</td>
+<td>0.665044</td>
+<td>0.797417</td>
+<td>0.809417</td>
+<td>0.71259</td>
+<td>0.720586</td>
+<td>0</td>
+<td>0.714714</td>
+<td>0.735792</td>
+<td>0.772389</td>
+<td>0.729604</td>
+<td>0.668659</td>
+<td>0.803812</td>
+<td>0.721095</td>
+<td>0.855325</td>
+<td>0.759875</td>
+<td>0.662146</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m40_MA1699.1</td>
+<td>0.710824</td>
+<td>0.69228</td>
+<td>0.849268</td>
+<td>0.834283</td>
+<td>0.694814</td>
+<td>0.614426</td>
+<td>0.812647</td>
+<td>0.71541</td>
+<td>0.736203</td>
+<td>0.523229</td>
+<td>0.834277</td>
+<td>0.719496</td>
+<td>0.729878</td>
+<td>0.726405</td>
+<td>0.812019</td>
+<td>0.685725</td>
+<td>0.750901</td>
+<td>0.715468</td>
+<td>0.801426</td>
+<td>0.721667</td>
+<td>0.685218</td>
+<td>0.865807</td>
+<td>0.694877</td>
+<td>0.704691</td>
+<td>0.731392</td>
+<td>0.69104</td>
+<td>0.49062</td>
+<td>0.768429</td>
+<td>0.840773</td>
+<td>0.894778</td>
+<td>0.577539</td>
+<td>0.696518</td>
+<td>0.714714</td>
+<td>0</td>
+<td>0.707542</td>
+<td>0.635769</td>
+<td>0.859654</td>
+<td>0.708815</td>
+<td>0.80276</td>
+<td>0.576873</td>
+<td>0.855368</td>
+<td>0.893444</td>
+<td>0.789738</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m41_MA1701.1</td>
+<td>0.236502</td>
+<td>0.671372</td>
+<td>0.815496</td>
+<td>0.810811</td>
+<td>0.673421</td>
+<td>0.610212</td>
+<td>0.595647</td>
+<td>0.573816</td>
+<td>0.680078</td>
+<td>0.614166</td>
+<td>0.777093</td>
+<td>0.697293</td>
+<td>0.552015</td>
+<td>0.610787</td>
+<td>0.751022</td>
+<td>0.635629</td>
+<td>0.551521</td>
+<td>0.610935</td>
+<td>0.69325</td>
+<td>0.278526</td>
+<td>0.572717</td>
+<td>0.790076</td>
+<td>0.640304</td>
+<td>0.686954</td>
+<td>0.562841</td>
+<td>0.688734</td>
+<td>0.6841</td>
+<td>0.699324</td>
+<td>0.75777</td>
+<td>0.755256</td>
+<td>0.782242</td>
+<td>0.786941</td>
+<td>0.735792</td>
+<td>0.707542</td>
+<td>0</td>
+<td>0.322503</td>
+<td>0.752132</td>
+<td>0.780401</td>
+<td>0.716964</td>
+<td>0.657655</td>
+<td>0.912844</td>
+<td>0.793691</td>
+<td>0.826968</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m42_MA1703.1</td>
+<td>0.290656</td>
+<td>0.758722</td>
+<td>0.737635</td>
+<td>0.697037</td>
+<td>0.636341</td>
+<td>0.548872</td>
+<td>0.514171</td>
+<td>0.486554</td>
+<td>0.653469</td>
+<td>0.49106</td>
+<td>0.804592</td>
+<td>0.696621</td>
+<td>0.556931</td>
+<td>0.621143</td>
+<td>0.673945</td>
+<td>0.721645</td>
+<td>0.581272</td>
+<td>0.499885</td>
+<td>0.630025</td>
+<td>0.301317</td>
+<td>0.645762</td>
+<td>0.803294</td>
+<td>0.580093</td>
+<td>0.640376</td>
+<td>0.60715</td>
+<td>0.676667</td>
+<td>0.619219</td>
+<td>0.604916</td>
+<td>0.720715</td>
+<td>0.745639</td>
+<td>0.772685</td>
+<td>0.765474</td>
+<td>0.772389</td>
+<td>0.635769</td>
+<td>0.322503</td>
+<td>0</td>
+<td>0.724571</td>
+<td>0.784227</td>
+<td>0.797909</td>
+<td>0.600664</td>
+<td>0.912232</td>
+<td>0.865807</td>
+<td>0.85193</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m43_MA1704.1</td>
+<td>0.70541</td>
+<td>0.819877</td>
+<td>0.685856</td>
+<td>0.756807</td>
+<td>0.702928</td>
+<td>0.593185</td>
+<td>0.525337</td>
+<td>0.728439</td>
+<td>0.737471</td>
+<td>0.771921</td>
+<td>0.783539</td>
+<td>0.435902</td>
+<td>0.681854</td>
+<td>0.605825</td>
+<td>0.780266</td>
+<td>0.795723</td>
+<td>0.679134</td>
+<td>0.728114</td>
+<td>0.13113</td>
+<td>0.668126</td>
+<td>0.793254</td>
+<td>0.830854</td>
+<td>0.674775</td>
+<td>0.74041</td>
+<td>0.724287</td>
+<td>0.481818</td>
+<td>0.82124</td>
+<td>0.743187</td>
+<td>0.680146</td>
+<td>0.503632</td>
+<td>0.761161</td>
+<td>0.597718</td>
+<td>0.729604</td>
+<td>0.859654</td>
+<td>0.752132</td>
+<td>0.724571</td>
+<td>0</td>
+<td>0.692066</td>
+<td>0.683684</td>
+<td>0.828874</td>
+<td>0.910228</td>
+<td>0.827486</td>
+<td>0.704443</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m4_MA0263.1</td>
+<td>0.793045</td>
+<td>0.817407</td>
+<td>0.812019</td>
+<td>0.835158</td>
+<td>0.671792</td>
+<td>0.573264</td>
+<td>0.836978</td>
+<td>0.598416</td>
+<td>0.724388</td>
+<td>0.679917</td>
+<td>0.626783</td>
+<td>0.707626</td>
+<td>0.567334</td>
+<td>0.671308</td>
+<td>0.819899</td>
+<td>0.759438</td>
+<td>0.591573</td>
+<td>0.569872</td>
+<td>0.763889</td>
+<td>0.79924</td>
+<td>0.721325</td>
+<td>0.787941</td>
+<td>0.660264</td>
+<td>0.633743</td>
+<td>0.680208</td>
+<td>0.709839</td>
+<td>0.75592</td>
+<td>0.745836</td>
+<td>0.742907</td>
+<td>0.783876</td>
+<td>0.755033</td>
+<td>0.843329</td>
+<td>0.668659</td>
+<td>0.708815</td>
+<td>0.780401</td>
+<td>0.784227</td>
+<td>0.692066</td>
+<td>0</td>
+<td>0.79013</td>
+<td>0.786391</td>
+<td>0.855723</td>
+<td>0.742165</td>
+<td>0.771846</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m5_MA0264.1</td>
+<td>0.745811</td>
+<td>0.813093</td>
+<td>0.742087</td>
+<td>0.639683</td>
+<td>0.817864</td>
+<td>0.82171</td>
+<td>0.738215</td>
+<td>0.652674</td>
+<td>0.783219</td>
+<td>0.741032</td>
+<td>0.739887</td>
+<td>0.742717</td>
+<td>0.627446</td>
+<td>0.72212</td>
+<td>0.756999</td>
+<td>0.844944</td>
+<td>0.674268</td>
+<td>0.573514</td>
+<td>0.582621</td>
+<td>0.755714</td>
+<td>0.818095</td>
+<td>0.785652</td>
+<td>0.637394</td>
+<td>0.68968</td>
+<td>0.847845</td>
+<td>0.796909</td>
+<td>0.76271</td>
+<td>0.78453</td>
+<td>0.747105</td>
+<td>0.422985</td>
+<td>0.599059</td>
+<td>0.720918</td>
+<td>0.803812</td>
+<td>0.80276</td>
+<td>0.716964</td>
+<td>0.797909</td>
+<td>0.683684</td>
+<td>0.79013</td>
+<td>0</td>
+<td>0.739153</td>
+<td>0.820131</td>
+<td>0.814715</td>
+<td>0.758069</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m6_MA0537.1</td>
+<td>0.679715</td>
+<td>0.560351</td>
+<td>0.799162</td>
+<td>0.822089</td>
+<td>0.587108</td>
+<td>0.63987</td>
+<td>0.619214</td>
+<td>0.815841</td>
+<td>0.782687</td>
+<td>0.680593</td>
+<td>0.720504</td>
+<td>0.761058</td>
+<td>0.768249</td>
+<td>0.721469</td>
+<td>0.738164</td>
+<td>0.769777</td>
+<td>0.79749</td>
+<td>0.774959</td>
+<td>0.771301</td>
+<td>0.617903</td>
+<td>0.645338</td>
+<td>0.734507</td>
+<td>0.757282</td>
+<td>0.797423</td>
+<td>0.783455</td>
+<td>0.622874</td>
+<td>0.575448</td>
+<td>0.75256</td>
+<td>0.801751</td>
+<td>0.750051</td>
+<td>0.575491</td>
+<td>0.622495</td>
+<td>0.721095</td>
+<td>0.576873</td>
+<td>0.657655</td>
+<td>0.600664</td>
+<td>0.828874</td>
+<td>0.786391</td>
+<td>0.739153</td>
+<td>0</td>
+<td>0.825844</td>
+<td>0.73939</td>
+<td>0.765287</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m7_MA0538.1</td>
+<td>0.886571</td>
+<td>0.723366</td>
+<td>0.694159</td>
+<td>0.837027</td>
+<td>0.627517</td>
+<td>0.879845</td>
+<td>0.812953</td>
+<td>0.951427</td>
+<td>0.741241</td>
+<td>0.912566</td>
+<td>0.841655</td>
+<td>0.81969</td>
+<td>0.921216</td>
+<td>0.893304</td>
+<td>0.576599</td>
+<td>0.732637</td>
+<td>0.942567</td>
+<td>0.929839</td>
+<td>0.849374</td>
+<td>0.832722</td>
+<td>0.759832</td>
+<td>0.793343</td>
+<td>0.915472</td>
+<td>0.954321</td>
+<td>0.885547</td>
+<td>0.884435</td>
+<td>0.933408</td>
+<td>0.551124</td>
+<td>0.763008</td>
+<td>0.827835</td>
+<td>0.833626</td>
+<td>0.892845</td>
+<td>0.855325</td>
+<td>0.855368</td>
+<td>0.912844</td>
+<td>0.912232</td>
+<td>0.910228</td>
+<td>0.855723</td>
+<td>0.820131</td>
+<td>0.825844</td>
+<td>0</td>
+<td>0.791587</td>
+<td>0.76212</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m8_MA0540.1</td>
+<td>0.837872</td>
+<td>0.742217</td>
+<td>0.842441</td>
+<td>0.894106</td>
+<td>0.785553</td>
+<td>0.875704</td>
+<td>0.829478</td>
+<td>0.900352</td>
+<td>0.892556</td>
+<td>0.766984</td>
+<td>0.83285</td>
+<td>0.836884</td>
+<td>0.847915</td>
+<td>0.765689</td>
+<td>0.767728</td>
+<td>0.836598</td>
+<td>0.889422</td>
+<td>0.906515</td>
+<td>0.857379</td>
+<td>0.821419</td>
+<td>0.833819</td>
+<td>0.829511</td>
+<td>0.821043</td>
+<td>0.868485</td>
+<td>0.84089</td>
+<td>0.699236</td>
+<td>0.801494</td>
+<td>0.864998</td>
+<td>0.81105</td>
+<td>0.85046</td>
+<td>0.872291</td>
+<td>0.792051</td>
+<td>0.759875</td>
+<td>0.893444</td>
+<td>0.793691</td>
+<td>0.865807</td>
+<td>0.827486</td>
+<td>0.742165</td>
+<td>0.814715</td>
+<td>0.73939</td>
+<td>0.791587</td>
+<td>0</td>
+<td>0.617897</td>
+</tr>
+
+<tr valign='top'>
+<td>jaspar_2022_nematodes_m9_MA0541.1</td>
+<td>0.833421</td>
+<td>0.786418</td>
+<td>0.725013</td>
+<td>0.854256</td>
+<td>0.762973</td>
+<td>0.761338</td>
+<td>0.846693</td>
+<td>0.821947</td>
+<td>0.83283</td>
+<td>0.874983</td>
+<td>0.749312</td>
+<td>0.86842</td>
+<td>0.788759</td>
+<td>0.799153</td>
+<td>0.777353</td>
+<td>0.90689</td>
+<td>0.821004</td>
+<td>0.827929</td>
+<td>0.787969</td>
+<td>0.8338</td>
+<td>0.797562</td>
+<td>0.751541</td>
+<td>0.814369</td>
+<td>0.847176</td>
+<td>0.838621</td>
+<td>0.732323</td>
+<td>0.875689</td>
+<td>0.825557</td>
+<td>0.839043</td>
+<td>0.676532</td>
+<td>0.752458</td>
+<td>0.80711</td>
+<td>0.662146</td>
+<td>0.789738</td>
+<td>0.826968</td>
+<td>0.85193</td>
+<td>0.704443</td>
+<td>0.771846</td>
+<td>0.758069</td>
+<td>0.765287</td>
+<td>0.76212</td>
+<td>0.617897</td>
+<td>0</td>
+</tr>
+
+</table>
+
+<pre>
+</pre>
+</BODY></HTML>
