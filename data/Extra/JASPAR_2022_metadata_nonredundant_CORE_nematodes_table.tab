@@ -1,0 +1,44 @@
+base_id	version	name	uniprot_ids	tax_id	class	family	collection	type	source	pubmed_ids	comment	tax_group
+MA1438	1	atf-7	A8XSX6	6238	Basic leucine zipper factors (bZIP)	Jun-related	CORE	PBM	31133749	28632756		nematodes
+MA0537	1	blmp-1	Q93560	6239	C2H2 zinc finger factors	More than 3 adjacent zinc fingers	CORE	ChIP-seq		20421211		nematodes
+MA1444	1	cebp-1	Q18909	6239	Basic leucine zipper factors (bZIP)	CEBP-related	CORE	ChIP-seq	30445619	25905672		nematodes
+MA0263	1	ceh-10::ttx-3	G5EE86::P41935	6239	Homeo domain factors::Homeo domain factors	Paired-related HD factors::HD-LIM factors	CORE	EMSA		15177025	dimer	nematodes
+MA0264	1	ceh-22	P41936	6239	Homeo domain factors	NK	CORE	PBM		16998473		nematodes
+MA1445	1	ceh-28	G5EE18	6239	Homeo domain factors	NK	CORE	ChIP-seq	30445619	25215497		nematodes
+MA1699	1	ceh-38	Q19720	6239	Homeo domain factors	""	CORE	ChIP-seq	29284660	9593691		nematodes
+MA0921	1	ceh-48	O45080	6239	Homeo domain factors	HD-CUT	CORE	PBM	25215497	22080565		nematodes
+MA0922	1	ces-2	Q94126	6239	Basic leucine zipper factors (bZIP)	""	CORE	PBM	25215497	8700229		nematodes
+MA0260	1	che-1	Q966L8	6239	C2H2 zinc finger factors	More than 3 adjacent zinc fingers	CORE	COMPILED		17606643		nematodes
+MA0538	1	daf-12	G5EFF5	6239	Other C4 zinc finger-type factors	C4-GATA-related	CORE	ChIP-seq		15375261		nematodes
+MA1446	1	daf-16	O16850	6239	Fork head/winged helix factors	FOX	CORE	ChIP-seq	30445619	25215497		nematodes
+MA0540	1	dpy-27	P48996	6239	""	""	CORE	ChIP-seq		17293863		nematodes
+MA0919	1	dsc-1	A8X4D9	6238	Homeo domain factors	""	CORE	PBM	25215497	18585360		nematodes
+MA0541	1	efl-1	G5EF11	6239	Fork head/winged helix factors	E2F	CORE	ChIP-seq		11463372		nematodes
+MA1701	1	elt-2	Q10655	6239	Other C4 zinc finger-type factors	C4-GATA-related	CORE	ChIP-seq	29284660	7782329		nematodes
+MA0542	1	elt-3	G5ECF7	6239	Other C4 zinc finger-type factors	C4-GATA-related	CORE	ChIP-seq		18662544		nematodes
+MA1439	1	elt-6	A8XI59	6238	Other C4 zinc finger-type factors	C4-GATA-related	CORE	PBM	31133749	18662544		nematodes
+MA0543	1	eor-1	G5EDU4	6239	C2H2 zinc finger factors	""	CORE	ChIP-seq		15355793		nematodes
+MA0920	1	fkh-2	A8XJN7	6238	Fork head/winged helix factors	FOX	CORE	PBM	25215497	22918467		nematodes
+MA1440	1	fkh-9	A8XJP7	6238	Fork head/winged helix factors	FOX	CORE	PBM	31133749	26963674		nematodes
+MA1448	1	fos-1	G5ECG2	6239	Basic leucine zipper factors (bZIP)	Fos-related	CORE	PBM	31133749	19570917		nematodes
+MA0545	1	hlh-1	P22980	6239	Basic helix-loop-helix factors (bHLH)	""	CORE	ChIP-seq		1338434::7939715		nematodes
+MA1449	1	hlh-30	H2KZZ2	6239	Basic helix-loop-helix factors (bHLH)	""	CORE	ChIP-seq	30445619	19632181	Similar to PBM motif	nematodes
+MA0923	1	lim-4	G5EEA1	6239	C2H2 zinc finger factors	HD-LIM	CORE	PBM	25215497	18585360		nematodes
+MA1441	1	lim-7	A8WVZ2	6238	Homeo domain factors	""	CORE	PBM	31133749	18585359	like ISL2, lim-7 has V,Q, C at positions 47, 50, 54. Hence, it binds to CAA/CTTA.	nematodes
+MA0261	1	lin-14	Q21446	6239	""	""	CORE	SELEX		16314527		nematodes
+MA1450	1	lin-54	Q95QD7	6239	CRC domain	""	CORE	ChIP-seq	30413482	21589891	Matches the consensus TTYRAA	nematodes
+MA0262	1	mab-3	O18214	6239	DM-type intertwined zinc finger factors	""	CORE	EMSA		9927589		nematodes
+MA1442	1	mab-5	Q9GZ03	6238	Homeo domain factors	""	CORE	PBM	31133749	18585359	like HOXA1, mab-5 has I,Q, M at positions 47, 50, 54. Hence, it binds to TAATTA.	nematodes
+MA1451	1	nhr-6	P41829	6239	Nuclear receptors with C4 zinc fingers	""	CORE	PBM	31133749	20506374		nematodes
+MA0924	1	pal-1	P34766	6239	Homeo domain factors	HOX	CORE	PBM	25215497	18585360		nematodes
+MA0546	1	pha-4	Q17381	6239	Fork head/winged helix factors	FOX	CORE	ChIP-seq		20623595		nematodes
+MA1703	1	pqm-1	G5EFY7	6239	C2H2 zinc finger factors	""	CORE	ChIP-seq	29284660	23911329	Matches the TGATAAG consensus	nematodes
+MA0547	1	skn-1	P34707	6239	Basic leucine zipper factors (bZIP)	""	CORE	ChIP-seq		23555279		nematodes
+MA0925	1	sma-4	P45897	6239	SMAD/NF-1 DNA-binding domain factors	SMAD factors	CORE	PBM	25215497	16322555		nematodes
+MA0544	1	snpc-4	P91868	6239	Tryptophan cluster factors	Myb/SANT domain factors	CORE	ChIP-seq		22345127		nematodes
+MA1443	1	unc-30	A8WQQ9	6238	Homeo domain factors	""	CORE	PBM	31133749	15723795		nematodes
+MA0918	1	unc-62	A8WL06	6238	Homeo domain factors	TALE-type homeo domain factors	CORE	PBM	25215497	23468654		nematodes
+MA0926	1	unc-86	P13528	6239	Homeo domain factors	POU domain factors	CORE	PBM	25215497	1361171		nematodes
+MA0927	1	vab-7	Q93899	6239	Homeo domain factors	HOX	CORE	PBM	25215497	18585360		nematodes
+MA0928	1	zfh-2	V6CLN5	6239	Homeo domain factors	""	CORE	PBM	25215497	18585360		nematodes
+MA1704	1	zip-8	P46505	6239	Basic leucine zipper factors (bZIP)	""	CORE	ChIP-seq	29284660	25215497	Similar to PBM motif	nematodes

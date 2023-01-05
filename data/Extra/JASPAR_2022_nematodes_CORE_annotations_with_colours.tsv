@@ -1,0 +1,44 @@
+matrix_id	URL	colour	class	name	class_nb	DB
+MA0545_1	https://jaspar.uio.no/matrix/MA0545.1/	#743190	Basic helix-loop-helix factors (bHLH)	hlh-1	6	JASPAR_2022_nematodes_CORE
+MA1449_1	https://jaspar.uio.no/matrix/MA1449.1/	#743190	Basic helix-loop-helix factors (bHLH)	hlh-30	6	JASPAR_2022_nematodes_CORE
+MA1438_1	https://jaspar.uio.no/matrix/MA1438.1/	#C97182	Basic leucine zipper factors (bZIP)	atf-7	2	JASPAR_2022_nematodes_CORE
+MA1444_1	https://jaspar.uio.no/matrix/MA1444.1/	#C97182	Basic leucine zipper factors (bZIP)	cebp-1	2	JASPAR_2022_nematodes_CORE
+MA0922_1	https://jaspar.uio.no/matrix/MA0922.1/	#C97182	Basic leucine zipper factors (bZIP)	ces-2	2	JASPAR_2022_nematodes_CORE
+MA1448_1	https://jaspar.uio.no/matrix/MA1448.1/	#C97182	Basic leucine zipper factors (bZIP)	fos-1	2	JASPAR_2022_nematodes_CORE
+MA0547_1	https://jaspar.uio.no/matrix/MA0547.1/	#C97182	Basic leucine zipper factors (bZIP)	skn-1	2	JASPAR_2022_nematodes_CORE
+MA1704_1	https://jaspar.uio.no/matrix/MA1704.1/	#C97182	Basic leucine zipper factors (bZIP)	zip-8	2	JASPAR_2022_nematodes_CORE
+MA0537_1	https://jaspar.uio.no/matrix/MA0537.1/	#DAB877	C2H2 zinc finger factors	blmp-1	3	JASPAR_2022_nematodes_CORE
+MA0260_1	https://jaspar.uio.no/matrix/MA0260.1/	#DAB877	C2H2 zinc finger factors	che-1	3	JASPAR_2022_nematodes_CORE
+MA0543_1	https://jaspar.uio.no/matrix/MA0543.1/	#DAB877	C2H2 zinc finger factors	eor-1	3	JASPAR_2022_nematodes_CORE
+MA0923_1	https://jaspar.uio.no/matrix/MA0923.1/	#DAB877	C2H2 zinc finger factors	lim-4	3	JASPAR_2022_nematodes_CORE
+MA1703_1	https://jaspar.uio.no/matrix/MA1703.1/	#DAB877	C2H2 zinc finger factors	pqm-1	3	JASPAR_2022_nematodes_CORE
+MA1450_1	https://jaspar.uio.no/matrix/MA1450.1/	#907499	CRC domain	lin-54	7	JASPAR_2022_nematodes_CORE
+MA0262_1	https://jaspar.uio.no/matrix/MA0262.1/	#6CA47C	DM-type intertwined zinc finger factors	mab-3	8	JASPAR_2022_nematodes_CORE
+MA1446_1	https://jaspar.uio.no/matrix/MA1446.1/	#5C9046	Fork head/winged helix factors	daf-16	4	JASPAR_2022_nematodes_CORE
+MA0541_1	https://jaspar.uio.no/matrix/MA0541.1/	#5C9046	Fork head/winged helix factors	efl-1	4	JASPAR_2022_nematodes_CORE
+MA0920_1	https://jaspar.uio.no/matrix/MA0920.1/	#5C9046	Fork head/winged helix factors	fkh-2	4	JASPAR_2022_nematodes_CORE
+MA1440_1	https://jaspar.uio.no/matrix/MA1440.1/	#5C9046	Fork head/winged helix factors	fkh-9	4	JASPAR_2022_nematodes_CORE
+MA0546_1	https://jaspar.uio.no/matrix/MA0546.1/	#5C9046	Fork head/winged helix factors	pha-4	4	JASPAR_2022_nematodes_CORE
+MA0263_1	https://jaspar.uio.no/matrix/MA0263.1/	#87CCED	Homeo domain factors	ceh-10::ttx-3	1	JASPAR_2022_nematodes_CORE
+MA0264_1	https://jaspar.uio.no/matrix/MA0264.1/	#87CCED	Homeo domain factors	ceh-22	1	JASPAR_2022_nematodes_CORE
+MA1445_1	https://jaspar.uio.no/matrix/MA1445.1/	#87CCED	Homeo domain factors	ceh-28	1	JASPAR_2022_nematodes_CORE
+MA1699_1	https://jaspar.uio.no/matrix/MA1699.1/	#87CCED	Homeo domain factors	ceh-38	1	JASPAR_2022_nematodes_CORE
+MA0921_1	https://jaspar.uio.no/matrix/MA0921.1/	#87CCED	Homeo domain factors	ceh-48	1	JASPAR_2022_nematodes_CORE
+MA0919_1	https://jaspar.uio.no/matrix/MA0919.1/	#87CCED	Homeo domain factors	dsc-1	1	JASPAR_2022_nematodes_CORE
+MA1441_1	https://jaspar.uio.no/matrix/MA1441.1/	#87CCED	Homeo domain factors	lim-7	1	JASPAR_2022_nematodes_CORE
+MA1442_1	https://jaspar.uio.no/matrix/MA1442.1/	#87CCED	Homeo domain factors	mab-5	1	JASPAR_2022_nematodes_CORE
+MA0924_1	https://jaspar.uio.no/matrix/MA0924.1/	#87CCED	Homeo domain factors	pal-1	1	JASPAR_2022_nematodes_CORE
+MA1443_1	https://jaspar.uio.no/matrix/MA1443.1/	#87CCED	Homeo domain factors	unc-30	1	JASPAR_2022_nematodes_CORE
+MA0918_1	https://jaspar.uio.no/matrix/MA0918.1/	#87CCED	Homeo domain factors	unc-62	1	JASPAR_2022_nematodes_CORE
+MA0926_1	https://jaspar.uio.no/matrix/MA0926.1/	#87CCED	Homeo domain factors	unc-86	1	JASPAR_2022_nematodes_CORE
+MA0927_1	https://jaspar.uio.no/matrix/MA0927.1/	#87CCED	Homeo domain factors	vab-7	1	JASPAR_2022_nematodes_CORE
+MA0928_1	https://jaspar.uio.no/matrix/MA0928.1/	#87CCED	Homeo domain factors	zfh-2	1	JASPAR_2022_nematodes_CORE
+MA1451_1	https://jaspar.uio.no/matrix/MA1451.1/	#98833D	Nuclear receptors with C4 zinc fingers	nhr-6	9	JASPAR_2022_nematodes_CORE
+MA0538_1	https://jaspar.uio.no/matrix/MA0538.1/	#3D4768	Other C4 zinc finger-type factors	daf-12	5	JASPAR_2022_nematodes_CORE
+MA1701_1	https://jaspar.uio.no/matrix/MA1701.1/	#3D4768	Other C4 zinc finger-type factors	elt-2	5	JASPAR_2022_nematodes_CORE
+MA0542_1	https://jaspar.uio.no/matrix/MA0542.1/	#3D4768	Other C4 zinc finger-type factors	elt-3	5	JASPAR_2022_nematodes_CORE
+MA1439_1	https://jaspar.uio.no/matrix/MA1439.1/	#3D4768	Other C4 zinc finger-type factors	elt-6	5	JASPAR_2022_nematodes_CORE
+MA0925_1	https://jaspar.uio.no/matrix/MA0925.1/	#85204C	SMAD/NF-1 DNA-binding domain factors	sma-4	10	JASPAR_2022_nematodes_CORE
+MA0544_1	https://jaspar.uio.no/matrix/MA0544.1/	#661100	Tryptophan cluster factors	snpc-4	11	JASPAR_2022_nematodes_CORE
+MA0540_1	https://jaspar.uio.no/matrix/MA0540.1/	#888888	Unknown	dpy-27	12	JASPAR_2022_nematodes_CORE
+MA0261_1	https://jaspar.uio.no/matrix/MA0261.1/	#888888	Unknown	lin-14	12	JASPAR_2022_nematodes_CORE
