@@ -103,19 +103,18 @@ $~$
 
 ```bash
 
-matrix-clustering -v 2                                            \
--matrix JASPAR2022_CORE_nematodes JASPAR2022_CORE_nematodes.tf tf \
--title 'JASPAR 2022 nematodes CORE'                               \
--hclust_method average                                            \
--calc sum                                                         \
--metric_build_tree Ncor                                           \
--lth w 5 -lth cor 0.6 -lth Ncor 0.4                               \
--label_in_tree name                                               \
--return json                                                      \
--quick                                                            \
--radial_tree_only                                                 \
+matrix-clustering -v 2                                        \
+-matrix jaspar_2022_nematodes JASPAR2022_CORE_nematodes.tf tf \
+-title 'JASPAR 2022 nematodes CORE'                           \
+-hclust_method average                                        \
+-calc sum                                                     \
+-metric_build_tree Ncor                                       \
+-lth w 5 -lth cor 0.6 -lth Ncor 0.4                           \
+-label_in_tree name                                           \
+-return json                                                  \
+-quick                                                        \
+-radial_tree_only                                             \
 -o results/JASPAR2022_CORE_nematodes/JASPAR2022_CORE_nematodes
-
 ```
 $~$
 
@@ -133,24 +132,90 @@ knitr::include_graphics("images/Radial_tree_option.png", dpi = 100)
 $~$
 $~$
 
-After running this step, you will see an ~~ugly~~ tree as in Figure 3.
+After running this step, you will see this ~~ugly~~ tree as in Figure 3.
 
 This example will take ~2 minutes, but keep in mind that the running time varies
 according to the number of input motifs.
 
+Briefly, this radial tree contains the following elements (from inside to outside):
+
+- Hierarchical tree 
+- The colors in the tree branches correspond to the clusters identified by RSAT *matrix-clustering*.
+- Motif IDs (or TF names)
+- Motif logo
+
 $~$
 
-```{r Radil_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 3. Radial tree without outter ring and annotations.", cache=FALSE, include=TRUE, out.height="550px", out.width="550px", fig.align='center'}
+```{r Radial_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 3. Radial tree without outter ring and annotations.", cache=FALSE, include=TRUE, out.height="550px", out.width="550px", fig.align='center'}
 
 knitr::include_graphics("images/Radial_tree_raw.png", dpi = 100)
 ```
 
 $~$
 
-In the following parts we will show what to do to modify tree in Figure 3 and 
+In the following sections we will show what to do to modify tree in Figure 3 and 
 obtain a nice tree as in Figure 1.
+
+We will modify the next features:
+
+- Adapt space between motif IDs and logos
+- Font size
+- Logo size
+- Add annotations (color ring)
+- Add background (same as color ring)
 
 $~$
 $~$
+
+## Annotate radial tree
+
+To annotate the radial tree we need a table (without header) with the following
+data in this order:
+
+1. Collection name (the same name provided when running RSAT *matrix-clustering*
+with the parameter `-matrix`. See section *Generate a radial tree*).
+
+2. Motif ID (the exact same ID as in your input motif, case sensitive).
+
+3. Color in hexadecimal code.
+
+4. Text that will be displayed in the annotation ring. In this example we are using 
+numbers but in principle any text is allowed.
+
+$~$
+
+```
+jaspar_2022_nematodes	MA0545_1	#743190	1
+jaspar_2022_nematodes	MA1438_1	#C97182	2
+jaspar_2022_nematodes	MA1704_1	#C97182	2
+jaspar_2022_nematodes	MA0537_1	#DAB877	3
+jaspar_2022_nematodes	MA0260_1	#DAB877	3
+jaspar_2022_nematodes	MA0543_1	#DAB877	3
+jaspar_2022_nematodes	MA0923_1	#DAB877	3
+jaspar_2022_nematodes	MA1703_1	#DAB877	3
+jaspar_2022_nematodes	MA1450_1	#907499	4
+jaspar_2022_nematodes	MA0262_1	#6CA47C	5
+```
+
+$~$
+
+When this table is ready, run the following command.
+
+- `--annotation` : the table described above.
+- `--input` : the folder containing all the RSAT *matrix-clustering* results.
+
+```bash
+## Add the annotation +  color ring + background
+Rscript annotate_matrix-clustering.R                                             \
+	--annotation data/Extra/JASPAR_2022_nematodes_CORE_annotations_radial_tree.tsv \
+	--input      data/JASPAR_2022_CORE_nematodes_matrix-clustering
+```
+
+$~$
+
+$~$
+$~$
+
+
 
 # References
