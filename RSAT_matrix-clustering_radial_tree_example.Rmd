@@ -132,7 +132,41 @@ knitr::include_graphics("images/Radial_tree_option.png", dpi = 100)
 $~$
 $~$
 
-After running this step, you will see this ~~ugly~~ tree as in Figure 3.
+## Install `apache`
+
+The file `data/JASPAR_2022_CORE_nematodes_matrix-clustering/matrix-clustering_radial_tree.html` contains the radial tree in an html file. Unfortunately, to visualize 
+the content of this file is required to have installed [apache2](https://httpd.apache.org/)
+and open this html file as a localhost. If you don't do this, you will not see the 
+html content.
+
+To install `apache` you can follow this [instructions](https://ubuntu.com/tutorials/install-and-configure-apache#1-overview).
+
+Once `apache` is installed in your computer:
+
+1. Remove the folder `sudo rm -rf /var/www/html` 
+2. Copy the RSAT *matrix-clustering* folder to `/var/www/`
+3. Open your browser and type `localhost`. Now you can browse the files in  `/var/www/`
+4. Search and open the file `matrix-clustering_radial_tree.html`
+
+$~$
+
+```bash
+sudo rm -rf /var/www/html
+
+sudo cp -r data/JASPAR_2022_CORE_nematodes_matrix-clustering /var/www/html/JASPAR_2022_CORE_nematodes_matrix-clustering
+```
+
+$~$
+
+```{r localhost_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 3. As a localhost, open the matrix-clustering_radial_tree.html.", cache=FALSE, include=TRUE, out.height="500px", out.width="650px", fig.align='center'}
+
+knitr::include_graphics("images/localhost.png", dpi = 100)
+```
+
+$~$
+$~$
+
+After running this step, you will see this ~~ugly~~ tree as in Figure 4.
 
 This example will take ~2 minutes, but keep in mind that the running time varies
 according to the number of input motifs.
@@ -146,7 +180,7 @@ Briefly, this radial tree contains the following elements (from inside to outsid
 
 $~$
 
-```{r Radial_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 3. Radial tree without outter ring and annotations.", cache=FALSE, include=TRUE, out.height="550px", out.width="550px", fig.align='center'}
+```{r Radial_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 4. Radial tree without outter ring and annotations.", cache=FALSE, include=TRUE, out.height="550px", out.width="550px", fig.align='center'}
 
 knitr::include_graphics("images/Radial_tree_raw.png", dpi = 100)
 ```
@@ -212,6 +246,22 @@ Rscript annotate_matrix-clustering.R                                            
 ```
 
 $~$
+
+After running this script, copy the folder `data/JASPAR_2022_CORE_nematodes_matrix-clustering`
+to `/var/www/`, this time it will include the html file with the annotated tree.
+
+$~$
+
+```bash
+sudo cp -r data/JASPAR_2022_CORE_nematodes_matrix-clustering /var/www/html/JASPAR_2022_CORE_nematodes_matrix-clustering
+```
+
+$~$
+
+```{r localhost_annotated_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 5. As a localhost, open the matrix-clustering_radial_tree_annotated.html.", cache=FALSE, include=TRUE, out.height="500px", out.width="550px", fig.align='center'}
+
+knitr::include_graphics("images/localhost_ann.png", dpi = 100)
+```
 
 $~$
 $~$
