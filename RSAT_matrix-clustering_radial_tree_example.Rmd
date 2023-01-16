@@ -258,14 +258,43 @@ sudo cp -r data/JASPAR_2022_CORE_nematodes_matrix-clustering /var/www/html/JASPA
 
 $~$
 
-```{r localhost_annotated_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 5. As a localhost, open the matrix-clustering_radial_tree_annotated.html.", cache=FALSE, include=TRUE, out.height="500px", out.width="550px", fig.align='center'}
+```{r localhost_annotated_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 5. As a localhost, open the file matrix-clustering_radial_tree_annotated.html.", cache=FALSE, include=TRUE, out.height="500px", out.width="550px", fig.align='center'}
 
 knitr::include_graphics("images/localhost_ann.png", dpi = 100)
 ```
 
 $~$
+
+The radial tree is almost ready (Figure 6), you can see the following differences:
+
+- Each motif is highlighted with a background color, provided in the annotation table (4th column).
+- There is a colored ring around the radial tree, each fragment of the ring correspond
+to a motif, the fragment color is the same as the motif backgorund color.
+
 $~$
 
+```{r annotated_tree_no_ready, eval=TRUE, echo=FALSE, fig.cap="Figure 6. Radial tree without manual customization.", cache=FALSE, include=TRUE, out.height="500px", out.width="550px", fig.align='center'}
 
+knitr::include_graphics("images/Radial_tree_no_custom.png", dpi = 100)
+```
+
+$~$
+$~$
+
+## Manual customization 
+
+The next and final step is to manually customize some elements in the tree.
+
+1. Font size and color
+2. Logo size
+3. Tree diameter
+4. Space between motif names and logos
+5. Distance between ring and tree center
+6. Vertical logo position
+
+### Font size and color
+
+
+$~$
 
 # References
