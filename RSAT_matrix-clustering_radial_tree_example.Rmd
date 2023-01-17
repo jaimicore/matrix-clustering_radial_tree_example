@@ -273,7 +273,7 @@ to a motif, the fragment color is the same as the motif backgorund color.
 
 $~$
 
-```{r annotated_tree_no_ready, eval=TRUE, echo=FALSE, fig.cap="Figure 6. Radial tree without manual customization.", cache=FALSE, include=TRUE, out.height="500px", out.width="550px", fig.align='center'}
+```{r annotated_tree_no_ready, eval=TRUE, echo=FALSE, fig.cap="Figure 6. Radial tree without manual customization.", cache=FALSE, include=TRUE, out.height="400px", out.width="400px", fig.align='center'}
 
 knitr::include_graphics("images/Radial_tree_no_custom.png", dpi = 100)
 ```
@@ -283,18 +283,180 @@ $~$
 
 ## Manual customization 
 
-The next and final step is to manually customize some elements in the tree.
+The next and final step is to manually customize some elements in the tree. 
 
-1. Font size and color
-2. Logo size
-3. Tree diameter
-4. Space between motif names and logos
-5. Distance between ring and tree center
-6. Vertical logo position
+1. Font size (Figure 7)
+2. Space between motif names and logos (Figure 8)
+3. Logo size (Figure 9)
+4. Align logo with text (Figure 10)
+5. Insert text in annotation ring (Figure 11)
+6. Distance between ring and tree center (Figure 12)
+7. Tree branches thickness (Figure 13)
 
-### Font size and color
+
+To do these changes, pen the file `data/JASPAR_2022_CORE_nematodes_matrix-clustering/matrix-clustering_radial_tree_annotated.html`
+with a text editor change the parameters indicated in the following sections.
 
 
 $~$
+
+### Font size
+
+$~$
+
+```{r Change_motif_name_font_size, eval=TRUE, echo=FALSE, fig.cap="Figure 7. Change the number in the 'font-size' parameter. Default: 12.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Motif_name_font_size.png", dpi = 100)
+```
+
+
+$~$
+
+### Space between motif names and logos
+
+$~$
+```{r Space_motif_name_logo, eval=TRUE, echo=FALSE, fig.cap="Figure 8. Modify the 'x' attribute to adapt the distance between the logo and the motif id. Default: 70.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Logo_gap.png", dpi = 100)
+```
+$~$
+
+### Logo size
+
+$~$
+```{r Logo_height, eval=TRUE, echo=FALSE, fig.cap="Figure 9. Modify the 'height' attribute to adapt the logo size. Default: 20.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Logo_size.png", dpi = 100)
+```
+$~$
+
+
+### Align logo with text
+
+$~$
+```{r Logo_y_axis, eval=TRUE, echo=FALSE, fig.cap="Figure 10. Modify the 'y' attribute to move the logo along the Y-axis and align it with the text. Default: 0.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Logo_y_align.png", dpi = 100)
+```
+$~$
+
+### Add text in color ring
+
+Remove the text between the block of code starting by `node.append("image")`
+and the block of code starting by ` vis.selectAll('g.text')`. Then copy and paste
+the following text.
+
+$~$
+
+```javascript
+		
+  var innerRad_start = 205;
+ 	var innerRad_end = 450;
+ 
+ 	
+    // Add background elements for selection
+     vis.selectAll('rect_selection')
+        .data(data_sample)
+        .enter()
+        .append('path')
+        .attr('class', 'rect1')
+        .attr('id', function(d){ return( 'rect_sel' + d.id_motif) })
+        .attr('d', d3.svg.arc()
+          .startAngle(function(d){ return( (d.start * Math.PI)/180)  }  )  //converting from degs to radians
+          .endAngle(function(d){   return( (d.end   * Math.PI)/180)  }  ) //just radians
+          .innerRadius(innerRad_start)         // This is the size of the donut hole
+          .outerRadius(innerRad_end)
+        )
+        .style('fill',function(d){return(d.class)})
+        .attr('transform', 'translate(0,0)')
+        .style('stroke-width', '1px')
+        .style('opacity', 0.15);
+
+            
+          // Color algorithm annotation layer
+        vis.selectAll('annotations')
+            .data(data_sample)
+            .enter()
+            .append('path')
+            .attr('class','annotation1')
+            .attr('id', function(d,i){return('path' + i) })
+            .attr('d', d3.svg.arc()
+              .startAngle(function(d){ return( d.start * (Math.PI/180) ) }  )  //converting from degs to radians
+              .endAngle(function(d){ return( d.end * (Math.PI/180) ) }  ) //just radians
+              .innerRadius(innerRad_end)         // This is the size of the donut hole
+              .outerRadius(innerRad_end + (30*1))
+            )
+            .attr('fill', function(d){return(d.class)})
+            .attr('stroke', 'white')
+            .attr('transform', 'translate(0,0)')
+            .style('stroke-width', '2px')
+            .style('opacity', 1);
+            
+
+        // Color algorithm Non-Validated text layer
+        vis.selectAll('annotation1')
+            .data(data_sample)
+            .enter()
+            .append('text')
+            .attr('dy', 20)
+            .attr('x',33)
+            .style('font-size', '15px')
+            .append('textPath')
+            .attr('startOffset','50%')
+            .style('text-anchor','middle')
+            //.attr('stroke','black')
+            //.attr('fill','black')
+            .attr('xlink:href', function(d,i){return('#path' + i) })
+            .text(function(d){
+              var token = d.matrix_name.split('_').slice(-2).slice(0);
+              token = token[0];
+              if(/^UN/.test(token)){
+                var text_content = d.class_nb + '*';
+              } else {
+                var text_content = d.class_nb;
+              }
+              return(text_content);
+            })
+            ;
+```
+
+$~$
+```{r js_text, eval=TRUE, echo=FALSE, fig.cap="Figure 11. Insert the text above in this part of the code.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Insert_js_text.png", dpi = 100)
+```
+
+$~$
+
+### Distance between ring and tree center
+
+$~$
+```{r bg_end, eval=TRUE, echo=FALSE, fig.cap="Figure 12. Change the variable 'innerRad_end' to adapt where the background color ends.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Bg_ring_start_end.png", dpi = 100)
+```
+$~$
+
+### Tree branches thickness
+
+$~$
+```{r tree_branches, eval=TRUE, echo=FALSE, fig.cap="Figure 13. In the CSS section, change the parameter 'stroke-width'. Default: 1px.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Branch_width.png", dpi = 100)
+```
+$~$
+
+## Radial tree ready
+
+After all the manual changes, you should see a tree as in Figure 14. Remember that
+this file can only be visualized in in a folder read by apache.
+
+$~$
+```{r tree_ready, eval=TRUE, echo=FALSE, fig.cap="Figure 14. After all the manual changes, the radial tree should look like this one.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Radial_ready.png", dpi = 100)
+```
+$~$
+
 
 # References
