@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <style type="text/css">
+
+path.arc {
+  cursor: move;
+  fill: #fff;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font-size: 2px;
+  pointer-events: all;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.legend {
+	border-radius:5px;       
+      	text-align: center;
+	margin: 3px 5px 5px 5px;
+	width: 130px;
+	height: 20px;
+	padding: 4px;
+	cursor: pointer;
+	border-radius:5px;
+        color: #ffffff;
+        background:#cc0000;
+	display: inline-block;
+	position:relative;
+	float:left;
+}
+
+.legend:active {
+	position:relative;
+	top:2px;
+}
+
+
+.color-box{
+	width: 5px;
+	height: 5px;
+	padding:7px;
+	border-radius:5px;
+	color: #ffffff;
+	display: block;
+	margin: 0.5px;
+}
+
+
+.non_validated{
+	width: 5px;
+	height: 5px;
+	text-align: center;
+  	font-size: 20px;
+	padding:7px;
+	display: block;
+}
+
+
+.barplot{
+	width: 400px;
+	height: 300px;
+	display: inline-block;
+	float: left;
+	position: relative;
+	clear:both;
+}
+
+
+.color-legend {
+  position: relative;
+}
+
+
+#cluster_1 {
+    display: inline-block;
+    	   position:relative;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="cluster_1" style='display: inline-block;float:left;position:absolute;'>
+      <div id="footer" style='display: inline-block;float:left;position:absolute;'>
+
+      </div>
+    </div>
+    <script type="text/javascript">
+var data_sample = [{"matrix_name":"jaspar_2022_nematodes_m23_MA0925.1","cluster_nb":"#C36C6B","id_motif":1,"collection_name":"jaspar_2022_nematodes","class":"#85204C","class_nb":"10","start":0,"end":8.3721},
+{"matrix_name":"jaspar_2022_nematodes_m16_MA0918.1","cluster_nb":"#C36C6B","id_motif":2,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":8.3721,"end":16.7442},
+{"matrix_name":"jaspar_2022_nematodes_m12_MA0544.1","cluster_nb":"#D6AB07","id_motif":3,"collection_name":"jaspar_2022_nematodes","class":"#661100","class_nb":"11","start":16.7442,"end":25.1163},
+{"matrix_name":"jaspar_2022_nematodes_m7_MA0538.1","cluster_nb":"#666666","id_motif":4,"collection_name":"jaspar_2022_nematodes","class":"#3D4768","class_nb":" 5","start":25.1163,"end":33.4884},
+{"matrix_name":"jaspar_2022_nematodes_m6_MA0537.1","cluster_nb":"#6EA326","id_motif":5,"collection_name":"jaspar_2022_nematodes","class":"#DAB877","class_nb":" 3","start":33.4884,"end":41.8605},
+{"matrix_name":"jaspar_2022_nematodes_m11_MA0543.1","cluster_nb":"#9F8B4D","id_motif":6,"collection_name":"jaspar_2022_nematodes","class":"#DAB877","class_nb":" 3","start":41.8605,"end":50.2326},
+{"matrix_name":"jaspar_2022_nematodes_m15_MA0547.1","cluster_nb":"#CE4794","id_motif":7,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":50.2326,"end":58.6047},
+{"matrix_name":"jaspar_2022_nematodes_m3_MA0262.1","cluster_nb":"#CE4794","id_motif":8,"collection_name":"jaspar_2022_nematodes","class":"#6CA47C","class_nb":" 8","start":58.6047,"end":66.9767},
+{"matrix_name":"jaspar_2022_nematodes_m43_MA1704.1","cluster_nb":"#7C9059","id_motif":9,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":66.9767,"end":75.3488},
+{"matrix_name":"jaspar_2022_nematodes_m27_MA1438.1","cluster_nb":"#7C9059","id_motif":10,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":75.3488,"end":83.7209},
+{"matrix_name":"jaspar_2022_nematodes_m33_MA1444.1","cluster_nb":"#AE5CA0","id_motif":11,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":83.7209,"end":92.093},
+{"matrix_name":"jaspar_2022_nematodes_m20_MA0922.1","cluster_nb":"#AE5CA0","id_motif":12,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":92.093,"end":100.4651},
+{"matrix_name":"jaspar_2022_nematodes_m4_MA0263.1","cluster_nb":"#7C6A53","id_motif":13,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":100.4651,"end":108.8372},
+{"matrix_name":"jaspar_2022_nematodes_m36_MA1448.1","cluster_nb":"#DAA10B","id_motif":14,"collection_name":"jaspar_2022_nematodes","class":"#C97182","class_nb":" 2","start":108.8372,"end":117.2093},
+{"matrix_name":"jaspar_2022_nematodes_m39_MA1451.1","cluster_nb":"#C69115","id_motif":15,"collection_name":"jaspar_2022_nematodes","class":"#98833D","class_nb":" 9","start":117.2093,"end":125.5814},
+{"matrix_name":"jaspar_2022_nematodes_m29_MA1440.1","cluster_nb":"#AB7E3A","id_motif":16,"collection_name":"jaspar_2022_nematodes","class":"#5C9046","class_nb":" 4","start":125.5814,"end":133.9535},
+{"matrix_name":"jaspar_2022_nematodes_m18_MA0920.1","cluster_nb":"#AB7E3A","id_motif":17,"collection_name":"jaspar_2022_nematodes","class":"#5C9046","class_nb":" 4","start":133.9535,"end":142.3256},
+{"matrix_name":"jaspar_2022_nematodes_m35_MA1446.1","cluster_nb":"#AB7E3A","id_motif":18,"collection_name":"jaspar_2022_nematodes","class":"#5C9046","class_nb":" 4","start":142.3256,"end":150.6977},
+{"matrix_name":"jaspar_2022_nematodes_m14_MA0546.1","cluster_nb":"#AB7E3A","id_motif":19,"collection_name":"jaspar_2022_nematodes","class":"#5C9046","class_nb":" 4","start":150.6977,"end":159.0698},
+{"matrix_name":"jaspar_2022_nematodes_m30_MA1441.1","cluster_nb":"#1A9E77","id_motif":20,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":159.0698,"end":167.4419},
+{"matrix_name":"jaspar_2022_nematodes_m17_MA0919.1","cluster_nb":"#1A9E77","id_motif":21,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":167.4419,"end":175.814},
+{"matrix_name":"jaspar_2022_nematodes_m26_MA0928.1","cluster_nb":"#1A9E77","id_motif":22,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":175.814,"end":184.186},
+{"matrix_name":"jaspar_2022_nematodes_m25_MA0927.1","cluster_nb":"#1A9E77","id_motif":23,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":184.186,"end":192.5581},
+{"matrix_name":"jaspar_2022_nematodes_m21_MA0923.1","cluster_nb":"#1A9E77","id_motif":24,"collection_name":"jaspar_2022_nematodes","class":"#DAB877","class_nb":" 3","start":192.5581,"end":200.9302},
+{"matrix_name":"jaspar_2022_nematodes_m31_MA1442.1","cluster_nb":"#1A9E77","id_motif":25,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":200.9302,"end":209.3023},
+{"matrix_name":"jaspar_2022_nematodes_m22_MA0924.1","cluster_nb":"#1A9E77","id_motif":26,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":209.3023,"end":217.6744},
+{"matrix_name":"jaspar_2022_nematodes_m32_MA1443.1","cluster_nb":"#E23786","id_motif":27,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":217.6744,"end":226.0465},
+{"matrix_name":"jaspar_2022_nematodes_m41_MA1701.1","cluster_nb":"#CF6714","id_motif":28,"collection_name":"jaspar_2022_nematodes","class":"#3D4768","class_nb":" 5","start":226.0465,"end":234.4186},
+{"matrix_name":"jaspar_2022_nematodes_m10_MA0542.1","cluster_nb":"#CF6714","id_motif":29,"collection_name":"jaspar_2022_nematodes","class":"#3D4768","class_nb":" 5","start":234.4186,"end":242.7907},
+{"matrix_name":"jaspar_2022_nematodes_m28_MA1439.1","cluster_nb":"#CF6714","id_motif":30,"collection_name":"jaspar_2022_nematodes","class":"#3D4768","class_nb":" 5","start":242.7907,"end":251.1628},
+{"matrix_name":"jaspar_2022_nematodes_m42_MA1703.1","cluster_nb":"#CF6714","id_motif":31,"collection_name":"jaspar_2022_nematodes","class":"#DAB877","class_nb":" 3","start":251.1628,"end":259.5349},
+{"matrix_name":"jaspar_2022_nematodes_m19_MA0921.1","cluster_nb":"#CB6239","id_motif":32,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":259.5349,"end":267.907},
+{"matrix_name":"jaspar_2022_nematodes_m34_MA1445.1","cluster_nb":"#CB6239","id_motif":33,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":267.907,"end":276.2791},
+{"matrix_name":"jaspar_2022_nematodes_m40_MA1699.1","cluster_nb":"#CB6239","id_motif":34,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":276.2791,"end":284.6512},
+{"matrix_name":"jaspar_2022_nematodes_m24_MA0926.1","cluster_nb":"#B2AA11","id_motif":35,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":284.6512,"end":293.0233},
+{"matrix_name":"jaspar_2022_nematodes_m38_MA1450.1","cluster_nb":"#906F3E","id_motif":36,"collection_name":"jaspar_2022_nematodes","class":"#907499","class_nb":" 7","start":293.0233,"end":301.3953},
+{"matrix_name":"jaspar_2022_nematodes_m1_MA0260.1","cluster_nb":"#916D98","id_motif":37,"collection_name":"jaspar_2022_nematodes","class":"#DAB877","class_nb":" 3","start":301.3953,"end":309.7674},
+{"matrix_name":"jaspar_2022_nematodes_m2_MA0261.1","cluster_nb":"#886BAD","id_motif":38,"collection_name":"jaspar_2022_nematodes","class":"#888888","class_nb":"12","start":309.7674,"end":318.1395},
+{"matrix_name":"jaspar_2022_nematodes_m5_MA0264.1","cluster_nb":"#B36769","id_motif":39,"collection_name":"jaspar_2022_nematodes","class":"#87CCED","class_nb":" 1","start":318.1395,"end":326.5116},
+{"matrix_name":"jaspar_2022_nematodes_m37_MA1449.1","cluster_nb":"#B36769","id_motif":40,"collection_name":"jaspar_2022_nematodes","class":"#743190","class_nb":" 6","start":326.5116,"end":334.8837},
+{"matrix_name":"jaspar_2022_nematodes_m13_MA0545.1","cluster_nb":"#8BA819","id_motif":41,"collection_name":"jaspar_2022_nematodes","class":"#743190","class_nb":" 6","start":334.8837,"end":343.2558},
+{"matrix_name":"jaspar_2022_nematodes_m8_MA0540.1","cluster_nb":"#B3811A","id_motif":42,"collection_name":"jaspar_2022_nematodes","class":"#888888","class_nb":"12","start":343.2558,"end":351.6279},
+{"matrix_name":"jaspar_2022_nematodes_m9_MA0541.1","cluster_nb":"#A17426","id_motif":43,"collection_name":"jaspar_2022_nematodes","class":"#5C9046","class_nb":" 4","start":351.6279,"end":360}];
+
+// Add the buttons to change the orientation
+d3.select("#cluster_1").append("text")
+	.attr("x", 700)             
+	.attr("y", 0)   
+      .attr("font-size", "5px") 
+	.attr("class", "legend")     
+	.on("click", function(){
+		// change the orientation
+		d3.select("#cluster_1").selectAll("image")
+		.attr("xlink:href", function(d) { return d.children ? "" : d.image; }) 
+	})
+	.text("Direct");  
+
+
+d3.select("#cluster_1").append("text")
+	.attr("x", 1000)             
+	.attr("y", 0)   
+  .attr("font-size", "20px") 
+	.attr("class", "legend")     
+	.on("click", function(){
+		// change the orientation
+		d3.select("#cluster_1").selectAll("image")
+		.attr("xlink:href", function(d) { return d.children ? "" : d.image_rc; }) 
+	})
+	.text("Reverse") ; 
+
+var w = 2000,
+    h = 2000,
+    rx = w / 4,
+    ry = h / 4,
+    m0,
+    rotate = 0;
+
+var cluster = d3.layout.cluster()
+    .size([360, 200])
+    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 1); })
+    .sort(null);
+
+var diagonal = d3.svg.diagonal.radial()
+    .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+
+var svg = d3.select("#cluster_1").append("svg")
+    .style("width", w + "px")
+    .style("height", w + "px")
+    .call(d3.behavior.zoom().on("zoom", function () {
+        svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+    }))
+    .append("g")   ;
+
+var vis = svg.append("svg:svg")
+    .attr("width", w)
+    .attr("height", w)
+  .append("svg:g")
+    .attr("transform", "translate(" + rx + "," + ry + ")");
+
+
+//	vis.append("svg:path")
+//    	.attr("class", "arc")
+//	.attr("d", d3.svg.arc().innerRadius(ry - 120).outerRadius(ry).startAngle(0).endAngle(2 * Math.PI))
+//	.on("mousedown", mousedown);
+
+d3.json("matrix-clustering_trees/parsed_tree_cluster_1.json", function(json) {
+  var nodes = cluster.nodes(json);
+
+  var link = vis.selectAll("path.link")
+      .data(cluster.links(nodes))
+    .enter().append("svg:path")
+      .attr("class", "link")
+      .style("stroke", function(d) { return d.target.branch_color; })
+      .attr("d", diagonal);
+
+  var node = vis.selectAll("g.node")
+      .data(nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+
+  node.append("circle")
+      .attr("r", 2.5);
+
+      	
+  node.append("image")
+		.attr("xlink:href", function(d) { return d.children ? "" : d.image; }) 
+		.attr("width", function(d) { return (d.size + 2)  * 5; })
+		.attr("height", 40)
+		.attr("x", 95)    
+		.attr("y", -15) 
+		.attr("cursor", "default") 
+		.attr("preserveAspectRatio", "none");	
+		
+		
+		// Insert javascript text here
+		var innerRad_start = 205;
+    var innerRad_end = 413;
+ 
+    
+    // Add background elements for selection
+     vis.selectAll('rect_selection')
+        .data(data_sample)
+        .enter()
+        .append('path')
+        .attr('class', 'rect1')
+        .attr('id', function(d){ return( 'rect_sel' + d.id_motif) })
+        .attr('d', d3.svg.arc()
+          .startAngle(function(d){ return( (d.start * Math.PI)/180)  }  )  //converting from degs to radians
+          .endAngle(function(d){   return( (d.end   * Math.PI)/180)  }  ) //just radians
+          .innerRadius(innerRad_start)         // This is the size of the donut hole
+          .outerRadius(innerRad_end)
+        )
+        .style('fill',function(d){return(d.class)})
+        .attr('transform', 'translate(0,0)')
+        .style('stroke-width', '1px')
+        .style('opacity', 0.15);
+
+            
+          // Color algorithm annotation layer
+        vis.selectAll('annotations')
+            .data(data_sample)
+            .enter()
+            .append('path')
+            .attr('class','annotation1')
+            .attr('id', function(d,i){return('path' + i) })
+            .attr('d', d3.svg.arc()
+              .startAngle(function(d){ return( d.start * (Math.PI/180) ) }  )  //converting from degs to radians
+              .endAngle(function(d){ return( d.end * (Math.PI/180) ) }  ) //just radians
+              .innerRadius(innerRad_end)         // This is the size of the donut hole
+              .outerRadius(innerRad_end + (30*1))
+            )
+            .attr('fill', function(d){return(d.class)})
+            .attr('stroke', 'white')
+            .attr('transform', 'translate(0,0)')
+            .style('stroke-width', '2px')
+            .style('opacity', 1);
+            
+
+        // Color algorithm Non-Validated text layer
+        vis.selectAll('annotation1')
+            .data(data_sample)
+            .enter()
+            .append('text')
+            .attr('dy', 20)
+            .attr('x',33)
+            .style('font-size', '15px')
+            .append('textPath')
+            .attr('startOffset','50%')
+            .style('text-anchor','middle')
+            //.attr('stroke','black')
+            //.attr('fill','black')
+            .attr('xlink:href', function(d,i){return('#path' + i) })
+            .text(function(d){
+              var token = d.matrix_name.split('_').slice(-2).slice(0);
+              token = token[0];
+              if(/^UN/.test(token)){
+                var text_content = d.class_nb + '*';
+              } else {
+                var text_content = d.class_nb;
+              }
+              return(text_content);
+            })
+            ;
+		
+		
+    vis.selectAll('g.text')
+                .data(nodes)
+                .enter()
+                .append('g')
+                .attr('class', 'node_text')
+                .attr('transform', function(d) { return 'rotate(' + (d.x - 90) + ')translate(' + d.y + ')'; })
+                .append('svg:a')
+                .attr('xlink:href', function(d) { return d.link_ext; })
+                .attr('target', '_blank')
+                .append('text')
+                .text(function(d) { return d.children ? '' :  d.name; })
+                .attr('fill', function(d) { return d.color; })
+                .style('font-size', '15px')
+                .attr('font-family', 'Arial')
+                .attr('dx', function(d) { return d.x < 180 ? 10 : -10; })
+                .attr('dy', '.31em')
+                .attr('text-anchor', function(d) { return d.x < 180 ? 'start' : 'end'; })
+                .attr('transform', function(d) { return d.x < 180 ? null : 'rotate(180)'; });
+});
+
+d3.select(window)
+    .on("mousemove", mousemove)
+    .on("mouseup", mouseup);
+
+function mouse(e) {
+  return [e.pageX - rx, e.pageY - ry];
+}
+
+function mousedown() {
+  m0 = mouse(d3.event);
+  d3.event.preventDefault();
+}
+
+function mousemove() {
+  if (m0) {
+    var m1 = mouse(d3.event),
+        dm = Math.atan2(cross(m0, m1), dot(m0, m1)) * 180 / Math.PI,
+        tx = "translate3d(0," + (ry - rx) + "px,0)rotate3d(0,0,0," + dm + "deg)translate3d(0," + (rx - ry) + "px,0)";
+    svg
+        .style("-moz-transform", tx)
+        .style("-ms-transform", tx)
+        .style("-webkit-transform", tx);
+  }
+}
+
+function mouseup() {
+  if (m0) {
+    var m1 = mouse(d3.event),
+        dm = Math.atan2(cross(m0, m1), dot(m0, m1)) * 180 / Math.PI,
+        tx = "rotate3d(0,0,0,0deg)";
+
+    rotate += dm;
+    if (rotate > 360) rotate -= 360;
+    else if (rotate < 0) rotate += 360;
+    m0 = null;
+
+    svg
+        .style("-moz-transform", tx)
+        .style("-ms-transform", tx)
+        .style("-webkit-transform", tx);
+
+    vis
+        .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
+      .selectAll("g.node text")
+        .attr("dx", function(d) { return (d.x + rotate) % 360 < 180 ? 8 : -8; })
+        .attr("text-anchor", function(d) { return (d.x + rotate) % 360 < 180 ? "start" : "end"; })
+        .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; });
+  }
+}
+
+function cross(a, b) {
+  return a[0] * b[1] - a[1] * b[0];
+}
+
+function dot(a, b) {
+  return a[0] * b[0] + a[1] * b[1];
+}
+
+    </script>
+  </body>
+</html>
