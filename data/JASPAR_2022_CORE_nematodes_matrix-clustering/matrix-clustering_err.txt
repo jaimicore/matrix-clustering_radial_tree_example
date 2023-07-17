@@ -1,3 +1,0 @@
-Smartmatch is experimental at /opt/rsat-tools/rsat_teaching/perl-scripts/lib/RSA2.cgi.lib line 2869.
-@@@@This is R PATH @@@@
-/usr/lib/R/bin
