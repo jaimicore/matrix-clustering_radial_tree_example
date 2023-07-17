@@ -144,7 +144,7 @@ sudo cp -r data/JASPAR_2022_CORE_nematodes_matrix-clustering /var/www/html/JASPA
 
 $~$
 
-```{r localhost_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 2. As a localhost, open the matrix-clustering_radial_tree.html.", cache=FALSE, include=TRUE, out.height="500px", out.width="650px", fig.align='center'}
+```{r localhost_tree, eval=TRUE, echo=FALSE, fig.cap="Figure 2. As a localhost, open the *_tree_annotated.html.", cache=FALSE, include=TRUE, out.height="300px", out.width="450px", fig.align='center'}
 
 knitr::include_graphics("images/localhost.png", dpi = 100)
 ```
@@ -167,7 +167,7 @@ Briefly, this radial tree contains the following elements (from inside to outsid
 
 $~$
 
-```{r Radial_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 3. Radial tree with outter ring and annotations after running the Example 2 of the stand-alone version.", cache=FALSE, include=TRUE, out.height="250px", out.width="550px", fig.align='center'}
+```{r Radial_tree_raw, eval=TRUE, echo=FALSE, fig.cap="Figure 3. Radial tree with outter ring with annotations and legend table after running the Example 2 of the stand-alone version.", cache=FALSE, include=TRUE, out.height="250px", out.width="550px", fig.align='center'}
 
 knitr::include_graphics("images/Radial_tree_raw.png", dpi = 100)
 ```
@@ -186,11 +186,10 @@ We will modify the next features:
     2. Space between motif names and logos (Figure 5)
     3. Logo size (Figure 6)
     4. Align logo with text (Figure 7)
-    6. Distance between ring and tree center (Figure 8)
-    7. Tree branches thickness (Figure 9)
+    5. Tree branches thickness (Figure 8)
 
 
-To do these changes, open the file `data/JASPAR_2022_CORE_nematodes_matrix-clustering/matrix-clustering_radial_tree_annotated.html`
+To do these changes, open the file `data/JASPAR_nematodes_tree_annotated.html`
 with a text editor change the parameters indicated in the following sections.
 
 
@@ -236,21 +235,21 @@ knitr::include_graphics("images/Logo_y_align.png", dpi = 100)
 ```
 $~$
 
-### Distance between ring and tree center
-
-$~$
-```{r bg_end, eval=TRUE, echo=FALSE, fig.cap="Figure 8. Change the variable 'innerRad_end' to adapt where the background color ends.", cache=FALSE, include=TRUE, fig.align='center'}
-
-knitr::include_graphics("images/Bg_ring_start_end.png", dpi = 100)
-```
-$~$
-
 ### Tree branches thickness
 
 $~$
-```{r tree_branches, eval=TRUE, echo=FALSE, fig.cap="Figure 9. In the CSS section, change the parameter 'stroke-width'. Default: 1px.", cache=FALSE, include=TRUE, fig.align='center'}
+```{r tree_branches, eval=TRUE, echo=FALSE, fig.cap="Figure 8. In the CSS section, change the parameter 'stroke-width'. Default: 1px.", cache=FALSE, include=TRUE, fig.align='center'}
 
 knitr::include_graphics("images/Branch_width.png", dpi = 100)
+```
+$~$
+
+### Hide legend
+
+$~$
+```{r hide_legend, eval=TRUE, echo=FALSE, fig.cap="Figure 10. Comment the text within the comments 'Insert annotation within these comments : start/end'. See the selected text in the figure. Default: 1px.", cache=FALSE, include=TRUE, fig.align='center'}
+
+knitr::include_graphics("images/Comment_legend.png", dpi = 100)
 ```
 $~$
 
