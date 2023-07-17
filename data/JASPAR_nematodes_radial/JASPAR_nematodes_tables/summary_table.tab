@@ -1,0 +1,2 @@
+Nb_motifs	Nb_collections	Nb_clusters	Thresholds	Linkage_method	Similarity_metric
+43	1	26	Ncor = 0.55; cor = 0.75; w = 5	average	Ncor

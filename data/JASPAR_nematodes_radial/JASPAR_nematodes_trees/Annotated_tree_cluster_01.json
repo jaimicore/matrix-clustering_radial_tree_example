@@ -1,0 +1,727 @@
+{
+"name": "",
+"children":[{
+ "node":"node_42",
+"branch_color" : "",
+ "children":[
+  {
+   "node":"node_30",
+"branch_color" : "",
+   "children":[
+    {
+     "label":"JASPAR_nematodes_MA0540.1_n8",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0540.1_n8.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0540.1_n8_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0540.1_n8.png",
+ "ic" : 16.291,
+ "size" : 21,
+ "name" : "dpy-27",
+ "link_ext" : "",
+ "branch_color" : "#87CCED"
+    },
+    {
+     "label":"JASPAR_nematodes_MA0541.1_n9",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0541.1_n9.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0541.1_n9_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0541.1_n9.png",
+ "ic" : 12.934,
+ "size" : 21,
+ "name" : "efl-1",
+ "link_ext" : "",
+ "branch_color" : "#989435"
+    }
+   ]
+  },
+  {
+   "node":"node_41",
+"branch_color" : "",
+   "children":[
+    {
+     "node":"node_38",
+"branch_color" : "",
+     "children":[
+      {
+       "node":"node_23",
+"branch_color" : "",
+       "children":[
+        {
+         "label":"JASPAR_nematodes_MA0537.1_n6",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0537.1_n6.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0537.1_n6_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0537.1_n6.png",
+ "ic" : 13.621,
+ "size" : 21,
+ "name" : "blmp-1",
+ "link_ext" : "",
+ "branch_color" : "#993D96"
+        },
+        {
+         "label":"JASPAR_nematodes_MA0543.1_n11",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0543.1_n11.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0543.1_n11_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0543.1_n11.png",
+ "ic" : 14.599,
+ "size" : 21,
+ "name" : "eor-1",
+ "link_ext" : "",
+ "branch_color" : "#946548"
+        }
+       ]
+      },
+      {
+       "node":"node_35",
+"branch_color" : "",
+       "children":[
+        {
+         "label":"JASPAR_nematodes_MA0538.1_n7",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0538.1_n7.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0538.1_n7_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0538.1_n7.png",
+ "ic" : 14.593,
+ "size" : 21,
+ "name" : "daf-12",
+ "link_ext" : "",
+ "branch_color" : "#839F5E"
+        },
+        {
+         "node":"node_27",
+"branch_color" : "",
+         "children":[
+          {
+           "label":"JASPAR_nematodes_MA0544.1_n12",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0544.1_n12.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0544.1_n12_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0544.1_n12.png",
+ "ic" : 15.984,
+ "size" : 21,
+ "name" : "snpc-4",
+ "link_ext" : "",
+ "branch_color" : "#DAB477"
+          },
+          {
+           "node":"node_22",
+"branch_color" : "",
+           "children":[
+            {
+             "label":"JASPAR_nematodes_MA0918.1_n16",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0918.1_n16.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0918.1_n16_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0918.1_n16.png",
+ "ic" : 10.317,
+ "size" : 21,
+ "name" : "unc-62",
+ "link_ext" : "",
+ "branch_color" : "#68964A"
+            },
+            {
+             "label":"JASPAR_nematodes_MA0925.1_n23",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0925.1_n23.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0925.1_n23_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0925.1_n23.png",
+ "ic" : 11.054,
+ "size" : 21,
+ "name" : "sma-4",
+ "link_ext" : "",
+ "branch_color" : "#B4A1B7"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "node":"node_40",
+"branch_color" : "",
+     "children":[
+      {
+       "node":"node_37",
+"branch_color" : "",
+       "children":[
+        {
+         "node":"node_34",
+"branch_color" : "",
+         "children":[
+          {
+           "node":"node_31",
+"branch_color" : "",
+           "children":[
+            {
+             "node":"node_17",
+"branch_color" : "#719299",
+             "children":[
+              {
+               "node":"node_4",
+"branch_color" : "#719299",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA0920.1_n18",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0920.1_n18.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0920.1_n18_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0920.1_n18.png",
+ "ic" : 11.219,
+ "size" : 21,
+ "name" : "fkh-2",
+ "link_ext" : "",
+ "branch_color" : "#719299"
+                },
+                {
+                 "label":"JASPAR_nematodes_MA1440.1_n29",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1440.1_n29.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1440.1_n29_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1440.1_n29.png",
+ "ic" : 9.724,
+ "size" : 21,
+ "name" : "fkh-9",
+ "link_ext" : "",
+ "branch_color" : "#719299"
+                }
+               ]
+              },
+              {
+               "node":"node_13",
+"branch_color" : "#719299",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA0546.1_n14",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0546.1_n14.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0546.1_n14_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0546.1_n14.png",
+ "ic" : 13.558,
+ "size" : 21,
+ "name" : "pha-4",
+ "link_ext" : "",
+ "branch_color" : "#719299"
+                },
+                {
+                 "label":"JASPAR_nematodes_MA1446.1_n35",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1446.1_n35.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1446.1_n35_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1446.1_n35.png",
+ "ic" : 11.43,
+ "size" : 21,
+ "name" : "daf-16",
+ "link_ext" : "",
+ "branch_color" : "#719299"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "node":"node_24",
+"branch_color" : "",
+             "children":[
+              {
+               "node":"node_11",
+"branch_color" : "#B8BB68",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA1703.1_n42",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1703.1_n42.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1703.1_n42_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1703.1_n42.png",
+ "ic" : 11.763,
+ "size" : 21,
+ "name" : "pqm-1",
+ "link_ext" : "",
+ "branch_color" : "#B8BB68"
+                },
+                {
+                 "node":"node_9",
+"branch_color" : "#B8BB68",
+                 "children":[
+                  {
+                   "label":"JASPAR_nematodes_MA1439.1_n28",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1439.1_n28.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1439.1_n28_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1439.1_n28.png",
+ "ic" : 9.237,
+ "size" : 21,
+ "name" : "elt-6",
+ "link_ext" : "",
+ "branch_color" : "#B8BB68"
+                  },
+                  {
+                   "node":"node_6",
+"branch_color" : "#B8BB68",
+                   "children":[
+                    {
+                     "label":"JASPAR_nematodes_MA0542.1_n10",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0542.1_n10.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0542.1_n10_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0542.1_n10.png",
+ "ic" : 13.93,
+ "size" : 21,
+ "name" : "elt-3",
+ "link_ext" : "",
+ "branch_color" : "#B8BB68"
+                    },
+                    {
+                     "label":"JASPAR_nematodes_MA1701.1_n41",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1701.1_n41.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1701.1_n41_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1701.1_n41.png",
+ "ic" : 13.017,
+ "size" : 21,
+ "name" : "elt-2",
+ "link_ext" : "",
+ "branch_color" : "#B8BB68"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "node":"node_21",
+"branch_color" : "#7D8FA5",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA1443.1_n32",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1443.1_n32.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1443.1_n32_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1443.1_n32.png",
+ "ic" : 11.132,
+ "size" : 21,
+ "name" : "unc-30",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                },
+                {
+                 "node":"node_12",
+"branch_color" : "#7D8FA5",
+                 "children":[
+                  {
+                   "label":"JASPAR_nematodes_MA1441.1_n30",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1441.1_n30.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1441.1_n30_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1441.1_n30.png",
+ "ic" : 8.179,
+ "size" : 21,
+ "name" : "lim-7",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                  },
+                  {
+                   "node":"node_10",
+"branch_color" : "#7D8FA5",
+                   "children":[
+                    {
+                     "label":"JASPAR_nematodes_MA0924.1_n22",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0924.1_n22.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0924.1_n22_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0924.1_n22.png",
+ "ic" : 12.518,
+ "size" : 21,
+ "name" : "pal-1",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                    },
+                    {
+                     "node":"node_8",
+"branch_color" : "#7D8FA5",
+                     "children":[
+                      {
+                       "label":"JASPAR_nematodes_MA1442.1_n31",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1442.1_n31.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1442.1_n31_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1442.1_n31.png",
+ "ic" : 11.088,
+ "size" : 21,
+ "name" : "mab-5",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                      },
+                      {
+                       "node":"node_5",
+"branch_color" : "#7D8FA5",
+                       "children":[
+                        {
+                         "node":"node_1",
+"branch_color" : "#7D8FA5",
+                         "children":[
+                          {
+                           "label":"JASPAR_nematodes_MA0919.1_n17",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0919.1_n17.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0919.1_n17_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0919.1_n17.png",
+ "ic" : 7.893,
+ "size" : 21,
+ "name" : "dsc-1",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                          },
+                          {
+                           "label":"JASPAR_nematodes_MA0928.1_n26",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0928.1_n26.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0928.1_n26_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0928.1_n26.png",
+ "ic" : 12.642,
+ "size" : 21,
+ "name" : "zfh-2",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                          }
+                         ]
+                        },
+                        {
+                         "node":"node_3",
+"branch_color" : "#7D8FA5",
+                         "children":[
+                          {
+                           "label":"JASPAR_nematodes_MA0923.1_n21",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0923.1_n21.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0923.1_n21_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0923.1_n21.png",
+ "ic" : 9.227,
+ "size" : 21,
+ "name" : "lim-4",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                          },
+                          {
+                           "label":"JASPAR_nematodes_MA0927.1_n25",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0927.1_n25.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0927.1_n25_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0927.1_n25.png",
+ "ic" : 9.753,
+ "size" : 21,
+ "name" : "vab-7",
+ "link_ext" : "",
+ "branch_color" : "#7D8FA5"
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "node":"node_32",
+"branch_color" : "",
+           "children":[
+            {
+             "label":"JASPAR_nematodes_MA1450.1_n38",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1450.1_n38.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1450.1_n38_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1450.1_n38.png",
+ "ic" : 16.086,
+ "size" : 21,
+ "name" : "lin-54",
+ "link_ext" : "",
+ "branch_color" : "#8A2F53"
+            },
+            {
+             "node":"node_26",
+"branch_color" : "",
+             "children":[
+              {
+               "label":"JASPAR_nematodes_MA0926.1_n24",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0926.1_n24.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0926.1_n24_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0926.1_n24.png",
+ "ic" : 12.918,
+ "size" : 21,
+ "name" : "unc-86",
+ "link_ext" : "",
+ "branch_color" : "#986799"
+              },
+              {
+               "node":"node_20",
+"branch_color" : "#352684",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA1699.1_n40",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1699.1_n40.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1699.1_n40_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1699.1_n40.png",
+ "ic" : 20.997,
+ "size" : 21,
+ "name" : "ceh-38",
+ "link_ext" : "",
+ "branch_color" : "#352684"
+                },
+                {
+                 "node":"node_7",
+"branch_color" : "#352684",
+                 "children":[
+                  {
+                   "label":"JASPAR_nematodes_MA0921.1_n19",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0921.1_n19.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0921.1_n19_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0921.1_n19.png",
+ "ic" : 6.007,
+ "size" : 21,
+ "name" : "ceh-48",
+ "link_ext" : "",
+ "branch_color" : "#352684"
+                  },
+                  {
+                   "label":"JASPAR_nematodes_MA1445.1_n34",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1445.1_n34.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1445.1_n34_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1445.1_n34.png",
+ "ic" : 13.861,
+ "size" : 21,
+ "name" : "ceh-28",
+ "link_ext" : "",
+ "branch_color" : "#352684"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "node":"node_36",
+"branch_color" : "",
+         "children":[
+          {
+           "node":"node_28",
+"branch_color" : "",
+           "children":[
+            {
+             "label":"JASPAR_nematodes_MA1448.1_n36",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1448.1_n36.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1448.1_n36_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1448.1_n36.png",
+ "ic" : 13.168,
+ "size" : 21,
+ "name" : "fos-1",
+ "link_ext" : "",
+ "branch_color" : "#6D1315"
+            },
+            {
+             "label":"JASPAR_nematodes_MA1451.1_n39",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1451.1_n39.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1451.1_n39_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1451.1_n39.png",
+ "ic" : 14.337,
+ "size" : 21,
+ "name" : "nhr-6",
+ "link_ext" : "",
+ "branch_color" : "#7C1B37"
+            }
+           ]
+          },
+          {
+           "node":"node_33",
+"branch_color" : "",
+           "children":[
+            {
+             "label":"JASPAR_nematodes_MA0263.1_n4",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0263.1_n4.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0263.1_n4_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0263.1_n4.png",
+ "ic" : 16.224,
+ "size" : 21,
+ "name" : "ceh-10::ttx-3",
+ "link_ext" : "",
+ "branch_color" : "#5CA789"
+            },
+            {
+             "node":"node_29",
+"branch_color" : "",
+             "children":[
+              {
+               "node":"node_18",
+"branch_color" : "",
+               "children":[
+                {
+                 "label":"JASPAR_nematodes_MA0262.1_n3",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0262.1_n3.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0262.1_n3_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0262.1_n3.png",
+ "ic" : 16.616,
+ "size" : 21,
+ "name" : "mab-3",
+ "link_ext" : "",
+ "branch_color" : "#7A6E86"
+                },
+                {
+                 "label":"JASPAR_nematodes_MA0547.1_n15",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0547.1_n15.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0547.1_n15_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0547.1_n15.png",
+ "ic" : 15.342,
+ "size" : 21,
+ "name" : "skn-1",
+ "link_ext" : "",
+ "branch_color" : "#21703B"
+                }
+               ]
+              },
+              {
+               "node":"node_19",
+"branch_color" : "",
+               "children":[
+                {
+                 "node":"node_2",
+"branch_color" : "#D38877",
+                 "children":[
+                  {
+                   "label":"JASPAR_nematodes_MA1438.1_n27",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1438.1_n27.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1438.1_n27_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1438.1_n27.png",
+ "ic" : 11.067,
+ "size" : 21,
+ "name" : "atf-7",
+ "link_ext" : "",
+ "branch_color" : "#D38877"
+                  },
+                  {
+                   "label":"JASPAR_nematodes_MA1704.1_n43",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1704.1_n43.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1704.1_n43_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1704.1_n43.png",
+ "ic" : 13.878,
+ "size" : 21,
+ "name" : "zip-8",
+ "link_ext" : "",
+ "branch_color" : "#D38877"
+                  }
+                 ]
+                },
+                {
+                 "node":"node_16",
+"branch_color" : "#6C96C3",
+                 "children":[
+                  {
+                   "label":"JASPAR_nematodes_MA0922.1_n20",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0922.1_n20.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0922.1_n20_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0922.1_n20.png",
+ "ic" : 14.211,
+ "size" : 21,
+ "name" : "ces-2",
+ "link_ext" : "",
+ "branch_color" : "#6C96C3"
+                  },
+                  {
+                   "label":"JASPAR_nematodes_MA1444.1_n33",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1444.1_n33.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1444.1_n33_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1444.1_n33.png",
+ "ic" : 13.624,
+ "size" : 21,
+ "name" : "cebp-1",
+ "link_ext" : "",
+ "branch_color" : "#6C96C3"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "node":"node_39",
+"branch_color" : "",
+       "children":[
+        {
+         "node":"node_15",
+"branch_color" : "",
+         "children":[
+          {
+           "label":"JASPAR_nematodes_MA0260.1_n1",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0260.1_n1.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0260.1_n1_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0260.1_n1.png",
+ "ic" : 9.231,
+ "size" : 21,
+ "name" : "che-1",
+ "link_ext" : "",
+ "branch_color" : "#878787"
+          },
+          {
+           "label":"JASPAR_nematodes_MA0261.1_n2",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0261.1_n2.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0261.1_n2_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0261.1_n2.png",
+ "ic" : 8.682,
+ "size" : 21,
+ "name" : "lin-14",
+ "link_ext" : "",
+ "branch_color" : "#C97384"
+          }
+         ]
+        },
+        {
+         "node":"node_25",
+"branch_color" : "",
+         "children":[
+          {
+           "label":"JASPAR_nematodes_MA0545.1_n13",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0545.1_n13.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0545.1_n13_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0545.1_n13.png",
+ "ic" : 12.871,
+ "size" : 21,
+ "name" : "hlh-1",
+ "link_ext" : "",
+ "branch_color" : "#3C4E62"
+          },
+          {
+           "node":"node_14",
+"branch_color" : "",
+           "children":[
+            {
+             "label":"JASPAR_nematodes_MA0264.1_n5",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0264.1_n5.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0264.1_n5_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA0264.1_n5.png",
+ "ic" : 12.159,
+ "size" : 21,
+ "name" : "ceh-22",
+ "link_ext" : "",
+ "branch_color" : "#733530"
+            },
+            {
+             "label":"JASPAR_nematodes_MA1449.1_n37",
+ "image" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1449.1_n37.png",
+ "image_rc" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1449.1_n37_rc.png",
+ "url" : "./JASPAR_nematodes_aligned_logos/JASPAR_nematodes_MA1449.1_n37.png",
+ "ic" : 11.973,
+ "size" : 21,
+ "name" : "hlh-30",
+ "link_ext" : "",
+ "branch_color" : "#682E8E"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}]}
